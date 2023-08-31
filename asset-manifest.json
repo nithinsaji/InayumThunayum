@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/InayumThunayum/static/css/main.e4a34c66.css",
+    "main.js": "/InayumThunayum/static/js/main.22f8a6da.js",
+    "static/media/second.png": "/InayumThunayum/static/media/second.83a1d1f032faa5a039db.png",
+    "static/media/hero.png": "/InayumThunayum/static/media/hero.32f7b956e840fbab5a3b.png",
+    "static/media/ring.png": "/InayumThunayum/static/media/ring.f72fdac8e519cce9a3c6.png",
+    "index.html": "/InayumThunayum/index.html",
+    "main.e4a34c66.css.map": "/InayumThunayum/static/css/main.e4a34c66.css.map",
+    "main.22f8a6da.js.map": "/InayumThunayum/static/js/main.22f8a6da.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e4a34c66.css",
+    "static/js/main.22f8a6da.js"
+  ]
+}
