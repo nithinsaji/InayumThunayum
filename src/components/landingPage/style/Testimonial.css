@@ -1,0 +1,35 @@
+.card__list{
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    max-width: 100%;
+    gap: 1rem;
+}
+.card{
+    background-color: var(--white-color);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: minmax(30%,30%);
+}
+.card i{
+    color: var(--first-color);
+    font-size: 24px;
+}
+.card div{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.card span{
+    padding-left: 20px;
+}
+.card__image{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    top: 0;
+    position: relative;
+}

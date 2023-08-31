@@ -1,13 +1,238 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Poppins:wght@400;500&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(260, 100%, 66%);
+  --second-color: hsl(328, 100%, 66%);
+  --gradient-color: linear-gradient(75deg,
+                    var(--second-color) 12%,
+                    var(--first-color) 90%);
+  --first-color-light: hsl(260, 88%, 92%);
+  --first-color-dark: hsl(260, 80%, 16%);
+  --title-color: hsl(260, 80%, 18%);
+  --text-color: hsl(260, 24%, 32%);
+  --text-color-light: hsl(260, 16%, 65%);
+  --white-color: hsl(0, 0%, 100%);
+  --body-color: hsl(260, 100%, 97%);
+  --container-color: hsl(0, 0%, 100%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Poppins", sans-serif;
+  --second-font: "Lora", serif;
+  --biggest-font-size: 2.75rem;
+  --bigger-font-size: 2rem;
+  --big-font-size: 1.75rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1152px) {
+  :root {
+    --biggest-font-size: 6rem;
+    --bigger-font-size: 4rem;
+    --big-font-size: 3.5rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+input,
+button {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+h1, h2, h3, h4 {
+  color: var(--title-color);
+  font-weight: var(--font-regular);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== THEME ===============*/
+
+
+/*========== Variables Dark theme ==========*/
+
+
+/*========== 
+	Color changes in some parts of 
+	the website, in dark theme
+==========*/
+
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  margin-inline: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding-block: 5rem 1rem;
+}
+
+.section__title {
+  text-align: center;
+  font-size: var(--bigger-font-size);
+  font-family: var(--second-font);
+  margin-bottom: 1.5rem;
+}
+
+.main {
+  overflow: hidden; /* For animation ScrollReveal */
+}
+
+/*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar{
+  width: 0.6rem;
+  border-radius: .5rem;
+  background-color: hsl(260, 16%, 75%);
+}
+
+::-webkit-scrollbar-thumb{
+  border-radius: .5rem;
+  background-color: hsl(260, 16%, 65%);
+}
+::-webkit-scrollbar-thumb:hover{
+  background-color: hsl(260, 16%, 55%);
+}
+
+/*=============== BREAKPOINTS ===============*/
+@media screen and (max-width: 345px){
+  .container{
+    margin-inline: 1rem;
+  }
+  .home__title{
+    font-size: 2rem;
+  }
+  .list__content{
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+}
+
+@media screen and (min-width: 576px){
+  .home__container,
+  .search__container,
+  .list__container,
+  .join__container{
+    grid-template-columns: 350px;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 767px){
+  .nav{
+    column-gap: 4.5rem;
+  }
+  .nav__toggle,
+  .nav__close{
+    display: none !important;
+  }
+  .nav__list{
+    flex-direction: row !important;
+    column-gap: 4.5rem;
+  }
+  .nav__menu{
+    margin-left: auto;
+  }
+  .join__container{
+    grid-template-columns: 600px;
+  }
+  .join__content{
+    padding-inline: 3rem;
+  }
+  .join__form{
+    display: flex;
+    column-gap: 1rem;
+    background-color: var(--white-color);
+    padding: .5rem .5rem .5rem 1.5rem;
+    border-radius: 4rem;
+  }
+  .joim__input{
+    padding: 0;
+    margin: 0;
+  }
+  .join__button{
+    padding-block: 1rem;
+    width: initial;
+  }
+
+  .footer__content{
+    grid-template-columns: repeat(2, max-content);
+    justify-content: space-between;
+  }
+  .footer__data{
+    grid-template-columns: repeat(3, max-content);
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .section__title{
+    text-align: initial;
+  }
+  .home__container,
+  .list__container{
+    grid-template-columns: repeat(2,400px);
+    align-items: center;
+    column-gap: 6rem;
+  }
+  .home__title{
+    margin: 0 0 1.25rem;
+  }
 }
