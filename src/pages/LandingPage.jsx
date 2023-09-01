@@ -9,12 +9,10 @@ import Testimonial from '../components/landingPage/Testimonial'
 const LandingPage = () => {
   return (
     <>
-      <NavBar />
       <Home />
       <About />
       <Testimonial />
       <Newsletter />
-      <Footer />
     </>
 
   )

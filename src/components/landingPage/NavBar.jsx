@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import './style/Navbar.css'
 
 const NavBar = () => {
@@ -10,17 +11,23 @@ const NavBar = () => {
                 <div className={`nav__menu ${Menu && 'show-menu'}`} id='nav-menu'>
                     <ul className="nav__list">
                         <li className="nav__item">
-                            <a href="#home" className="nav__link" onClick={() => setMenu(false)}>Home</a>
+                        <Link to="/" className="nav__link" onClick={() => setMenu(false)}>Home</Link>
                         </li>
                         <li className="nav__item">
                             <a href="#about" className="nav__link" onClick={() => setMenu(false)}>About</a>
                         </li>
                         <li className="nav__item">
-                            <a href="#contact" className="nav__link" onClick={() => setMenu(false)}>Contact</a>
-                        </li>
-                        <li className="nav__item">
                             <a href="#testimonial" className="nav__link" onClick={() => setMenu(false)}>Testimonial</a>
                         </li>
+                        <li className="nav__item">
+                            <Link to="/signin" style={{ textDecoration: "none" }} className="nav__logo" onClick={() => setMenu(false)}>Log In</Link>
+                        </li>
+                        <li className="nav__item">
+                            <Link to="/signup" style={{ textDecoration: "none" }} className="button" onClick={() => setMenu(false)}>
+                                Sign Up <i class="fa-solid fa-arrow-right"></i>
+                            </Link>
+                        </li>
+
                     </ul>
 
                     {/* Close button */}
@@ -28,6 +35,7 @@ const NavBar = () => {
                         <i class="fa-solid fa-xmark"></i>
                     </div>
                 </div>
+
                 {/* Toggle Button */}
                 <div className="nav__toggle" onClick={() => setMenu(true)}>
                     <i class="fa-solid fa-bars-staggered"></i>

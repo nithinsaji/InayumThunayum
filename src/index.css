@@ -179,6 +179,7 @@ img {
 @media screen and (min-width: 767px){
   .nav{
     column-gap: 4.5rem;
+    padding: 0 2.5rem;
   }
   .nav__toggle,
   .nav__close{
@@ -186,10 +187,15 @@ img {
   }
   .nav__list{
     flex-direction: row !important;
-    column-gap: 4.5rem;
+    column-gap: 1.5rem;
   }
   .nav__menu{
     margin-left: auto;
+  }
+  .home__container,
+  .list__container{
+    grid-template-columns: repeat(2,300px);
+    align-items: center;
   }
   .join__container{
     grid-template-columns: 600px;
@@ -223,6 +229,9 @@ img {
 }
 
 @media screen and (min-width: 1024px){
+  .container{
+    margin: 0 5rem;
+  }
   .section__title{
     text-align: initial;
   }
@@ -230,7 +239,7 @@ img {
   .list__container{
     grid-template-columns: repeat(2,400px);
     align-items: center;
-    column-gap: 6rem;
+    gap: 0;
   }
   .home__title{
     margin: 0 0 1.25rem;

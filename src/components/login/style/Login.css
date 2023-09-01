@@ -1,0 +1,89 @@
+
+.box__container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 140px;
+}
+
+.box__container h1{
+    font-size: 1.75rem;
+    font-weight: var(--font-medium);
+    margin-bottom: 30px;
+}
+.form__container{
+    width: 100%;
+}
+.form__container input{
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: transparent;
+}
+.muted__link,
+.text{
+    font-size: var(--smaller-font-size);
+    margin-bottom: 20px;
+}
+.muted__link{
+    cursor: pointer;
+}
+.text{
+    margin-top: 20px;
+    text-align: center;
+}
+.submit__button{
+    color: var(--white-color);
+    background: var(--gradient-color);
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 5px;
+    box-shadow: 0 0 5px 1px var(--first-color);
+}
+.link{
+    background: var(--gradient-color);
+    color: transparent;
+    -webkit-background-clip: text;
+    cursor: pointer;
+}
+
+.app__container{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+.box{
+    position: relative;
+    width: 350px;
+    height: auto;
+    background-color: var(--container-color);
+    padding: 30px;
+    box-shadow: 0 0 20px 1px var(--text-color-light);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.top__container{
+    position: absolute;
+    width: 100%;
+    background: var(--gradient-color);
+    height: 150px;
+    top: 0;left: 0;
+    z-index: 2;
+    border-radius: 0% 100% 30% 70% / 61% 0% 100% 39% ;
+    animation: slide-in-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    
+
+}
+
+
+@keyframes slide-in-top {
+
+    0%,
+    100% {
+        height: 150px;
+    }
+
+    50% {
+        height: 200%;
+    }
+}
