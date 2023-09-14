@@ -1,0 +1,16 @@
+.shortlist__container{
+    margin: 10px 15px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+@media screen and (max-width: 768px) {
+    .shortlist__container{
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr));
+    }
+}
+@media screen and (max-width: 425px) {
+    .shortlist__container{
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 100%), 1fr));
+    }
+}

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import Input from '../UI/Input'
 import './style/Login.css'
 
@@ -15,7 +16,11 @@ const LoginForm = () => {
               <Input type={'password'} name={'Password'} />
             </form>
             <a href="#" className='muted__link'>Forgot Your Password?</a>
-            <button className='submit__button'>Signin</button>
+            <button className='submit__button'>
+            <Link to='/dashboard'>
+              Signin
+              </Link>
+              </button>
             <span className="text">Don't have an acoount? <span className='link' >Sign Up</span></span>
           </div>
         </div>
