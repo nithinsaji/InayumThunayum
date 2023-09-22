@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/InayumThunayum/static/css/main.63552dd8.css",
-    "main.js": "/InayumThunayum/static/js/main.50d17be7.js",
+    "main.css": "/InayumThunayum/static/css/main.7d01ba12.css",
+    "main.js": "/InayumThunayum/static/js/main.0a74116a.js",
     "static/media/bride1.jpg": "/InayumThunayum/static/media/bride1.938d399c03367eb74735.jpg",
     "static/media/bride3.jpg": "/InayumThunayum/static/media/bride3.6883f8b86e180d14a44a.jpg",
     "static/media/bride2.jpg": "/InayumThunayum/static/media/bride2.3333ba7580eb62698f73.jpg",
@@ -11,11 +11,11 @@
     "static/media/groom.png": "/InayumThunayum/static/media/groom.925ba8e854270d4b7f84.png",
     "static/media/ring.png": "/InayumThunayum/static/media/ring.f72fdac8e519cce9a3c6.png",
     "index.html": "/InayumThunayum/index.html",
-    "main.63552dd8.css.map": "/InayumThunayum/static/css/main.63552dd8.css.map",
-    "main.50d17be7.js.map": "/InayumThunayum/static/js/main.50d17be7.js.map"
+    "main.7d01ba12.css.map": "/InayumThunayum/static/css/main.7d01ba12.css.map",
+    "main.0a74116a.js.map": "/InayumThunayum/static/js/main.0a74116a.js.map"
   },
   "entrypoints": [
-    "static/css/main.63552dd8.css",
-    "static/js/main.50d17be7.js"
+    "static/css/main.7d01ba12.css",
+    "static/js/main.0a74116a.js"
   ]
 }
