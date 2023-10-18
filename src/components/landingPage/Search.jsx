@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../UI/Button'
 import './style/Search.css'
 
 const Search = () => {
@@ -26,9 +27,11 @@ const Search = () => {
                     <input type="text" id='' />
                 </div>
                 <div className='inputGroup'>
-                <a href="#home" className="button">FIND YOUR PARTNER</a>
+                    <Button style={'gradient'}>
+                        FIND YOUR PARTNER
+                    </Button>
                 </div>
-                
+
             </div>
         </div>
     )

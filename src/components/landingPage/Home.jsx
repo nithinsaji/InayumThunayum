@@ -2,6 +2,7 @@ import React from 'react'
 import './style/Home.css'
 import hero from '../../assets/second.png'
 import Search from '../landingPage/Search'
+import Button from '../UI/Button'
 
 const Home = () => {
   return (
@@ -17,9 +18,10 @@ const Home = () => {
                 <p className="home__description">
                     We bring people together. Love unites them...
                 </p>
-                <a href="" className="button">
-                    Get Started <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <Button style={'gradient hover'}>
+                    Get Started
+                    <i class="fa-solid fa-arrow-right"></i>
+                </Button>
             </div>
             <img src={hero} alt="home-image" srcset="" className='home__img' />
         </div>

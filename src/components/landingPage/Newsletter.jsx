@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../UI/Button'
 import './style/Newsletter.css'
 
 const Newsletter = () => {
@@ -14,9 +15,10 @@ const Newsletter = () => {
           </div>
           <form action="" className="join__form">
             <input type="text" placeholder='Enter your email here...' className='join__input' />
-            <button className="button join__button">
-              Subscribe <i class="fa-solid fa-arrow-right"></i>
-            </button>
+            <Button style={'gradient hover join__button'}>
+              Subscribe 
+              <i class="fa-solid fa-arrow-right"></i>
+            </Button>
           </form>
         </div>
       </div>

@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
+import useLogout from '../../hooks/useLogout';
 import './style/Dashboard.css'
 
 const Dashboard = () => {
     const [open, setOpen] = useState(false);
+
+    const logout = useLogout();
+
     return (
         <div>
             <div className={`sidebar ${open && 'open'}`}>
@@ -54,7 +58,7 @@ const Dashboard = () => {
                                 <div className="job">Web designer</div>
                             </div>
                         </div>
-                        <i className='bx bx-log-out' id="log_out" ></i>
+                        <i className='bx bx-log-out' id="log_out" onClick={logout}></i>
                     </li>
                 </ul>
             </div>

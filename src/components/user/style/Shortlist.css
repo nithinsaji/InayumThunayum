@@ -1,16 +1,26 @@
-.shortlist__container{
+.shortlist{
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    margin: auto;
+    gap: 16px;
+    margin: 10px;
+}
+
+/* User Home Styling */
+.userhome__container{
     margin: 10px 15px;
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
 }
 @media screen and (max-width: 768px) {
-    .shortlist__container{
+    .userhome__container{
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr));
     }
 }
 @media screen and (max-width: 425px) {
-    .shortlist__container{
+    .userhome__container{
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 100%), 1fr));
     }
 }

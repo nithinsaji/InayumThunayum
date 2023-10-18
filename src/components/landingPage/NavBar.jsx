@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import Button from '../UI/Button';
 import './style/Navbar.css'
 
 const NavBar = () => {
@@ -11,7 +12,7 @@ const NavBar = () => {
                 <div className={`nav__menu ${Menu && 'show-menu'}`} id='nav-menu'>
                     <ul className="nav__list">
                         <li className="nav__item">
-                        <Link to="/" className="nav__link" onClick={() => setMenu(false)}>Home</Link>
+                            <Link to="/" className="nav__link" onClick={() => setMenu(false)}>Home</Link>
                         </li>
                         <li className="nav__item">
                             <a href="#about" className="nav__link" onClick={() => setMenu(false)}>About</a>
@@ -23,8 +24,12 @@ const NavBar = () => {
                             <Link to="/signin" style={{ textDecoration: "none" }} className="nav__logo" onClick={() => setMenu(false)}>Log In</Link>
                         </li>
                         <li className="nav__item">
-                            <Link to="/signup" style={{ textDecoration: "none" }} className="button" onClick={() => setMenu(false)}>
-                                Sign Up <i class="fa-solid fa-arrow-right"></i>
+                            <Link to="/signup" style={{ textDecoration: "none" }} onClick={() => setMenu(false)}>
+                                <Button style={'gradient hover'}>
+                                    Sign Up
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </Button>
+
                             </Link>
                         </li>
 

@@ -1,0 +1,67 @@
+/* button common style */
+.button{
+    display: inline-flex;
+    align-items: center;
+    column-gap: .25rem;
+    padding: .5rem 1rem;
+    border-radius: 4rem;
+    font-weight: var(--font-medium);
+    border: 0;
+    cursor: pointer;
+}
+.hover i{
+    font-style: 1.5rem;
+    transition: transform .3s;
+}
+.hover:hover i{
+    transform: translateX(.25rem);
+}
+
+/* gradient */
+.gradient{
+    background: var(--gradient-color);
+    color: var(--white-color);
+}
+
+/* normal */
+.normal{
+    background-color: var(--white-color);
+    color: black;
+    font-size: 12px;
+}
+
+/* glassy */
+.glassy{
+    background-color: rgba(0, 0, 0, 0.4);
+    font-size: 12px;
+    color: var(--white-color);
+    padding: 2px 10px;
+    font-weight: var(--font-regular);
+}
+.outline{
+    border: 1px solid black;
+    background: white;
+    font-size: 14px;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .normal{
+        font-size: 11px;
+    }
+}
+@media screen and (max-width: 425px) {
+    .normal{
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 375px) {
+    .normal{
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .normal{
+        font-size: 11px;
+    }
+}
