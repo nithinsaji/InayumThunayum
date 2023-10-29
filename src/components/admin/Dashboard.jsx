@@ -17,11 +17,6 @@ const Dashboard = () => {
                 </div>
                 <ul className="nav-list">
                     <li>
-                        <i className='bx bx-search' ></i>
-                        <input type="text" placeholder="Search..." />
-                        <span className="tooltip">Search</span>
-                    </li>
-                    <li>
                         <Link to=''>
                             <i className='bx bx-grid-alt'></i>
                             <span className="links_name">Home</span>
@@ -41,14 +36,6 @@ const Dashboard = () => {
                             <span className="links_name">Get Number</span>
                         </Link>
                         <span className="tooltip">Get Number</span>
-                    </li>
-
-                    <li>
-                        <a href="#demo">
-                            <i className='bx bx-cog' ></i>
-                            <span className="links_name">Setting</span>
-                        </a>
-                        <span className="tooltip">Setting</span>
                     </li>
                     <li className={`profile ${open && 'open'}`}>
                         <div className="profile-details">

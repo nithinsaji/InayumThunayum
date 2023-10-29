@@ -4,29 +4,32 @@ import Button from './Button'
 import './style/Card.css'
 
 
-const Card = ({ src }) => {
+const Card = ({ src , details, remove}) => {
+    const img = JSON.parse(details.image1);
+    console.log(img.url);
     return (
         <>
             <div className='profile__card'>
                 <div className="profile__card-image">
-                    <img src={src} alt="" srcset="" />
+                    <img src={`https://drive.google.com/uc?id=${img.id}`} alt="" srcset="" />
                 </div>
                 <div className="profile__card-content">
                     <div className='profile__top'>
-                        <Button style={'glassy'}>
-                            <i class="fa-solid fa-xmark"></i> ignore
+                        <Button style={'glassy'} onClick={() => remove(details.name,details.house_name)}>
+                            <i class="fa-solid fa-xmark" ></i> ignore
                         </Button>
                         <Button style={'glassy'}>
                             <i class="fa-regular fa-images"></i> 3
                         </Button>
                     </div>
                     <div className='profile__bottom'>
-                        <Link to='/Dashboard/profileview'>
+                        <Link to='/Dashboard/profileview' state={details}>
                             <div className='profile__desc'>
-                                <h1>No Name</h1>
-                                <h4>Job role and job location</h4>
-                                <h4> Age height feet/cm</h4>
-                                <h4>Home details</h4>
+                                <h1>{details.name}</h1>
+                                <h4>{details.ocupation} | {details.qualification}</h4>
+                                <h4>Age : {details.age}</h4>
+                                <h4>Height : {details.height} | Weight : {details.weight}</h4>
+                                <h4>House Name : {details.house_name}</h4>
                             </div></Link>
                         <div className='profile__btn'>
                             <Button style={'normal'}>

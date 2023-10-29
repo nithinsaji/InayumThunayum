@@ -45,10 +45,10 @@ const UserDashboard = () => {
                     </li>
 
                     <li>
-                        <a href="#demo">
+                    <Link to='settings'>
                             <i className='bx bx-cog' ></i>
                             <span className="links_name">Setting</span>
-                        </a>
+                        </Link>
                         <span className="tooltip">Setting</span>
                     </li>
                     <li className={`profile ${open && 'open'}`}>

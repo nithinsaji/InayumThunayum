@@ -1,19 +1,22 @@
 import React from 'react'
 import './style/profileview.css'
 import bride1 from '../../assets/bride1.jpg'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ProfileView = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
+    const details = location.state
 
     const tick = <i class="fa-solid fa-circle-check"></i>
+    
 
     return (
         <div className={`profileview`}>
             <div className='profileview__fixed'>
                 <i class="fa-solid fa-chevron-left" onClick={() => navigate(-1)}></i>
-                <span>No Name </span>
+                <span>No Name</span>
             </div>
             <div>
                 <div className='view__container'>
@@ -26,22 +29,27 @@ const ProfileView = () => {
                             <table>
                                 <tr>
                                     <td>Name :</td>
-                                    <td>No Name</td>
+                                    <td>{details.name}</td>
                                     <td>{tick}</td>
                                 </tr>
                                 <tr>
                                     <td>House Name :</td>
-                                    <td>House name</td>
+                                    <td>{details.house_name}</td>
+                                    <td>{tick}</td>
+                                </tr>
+                                <tr>
+                                    <td>Age</td>
+                                    <td>{details.age}</td>
                                     <td>{tick}</td>
                                 </tr>
                                 <tr>
                                     <td>DOB</td>
-                                    <td>1-1-1999</td>
+                                    <td>{details.dob}</td>
                                     <td>{tick}</td>
                                 </tr>
                                 <tr>
                                     <td>Mother Tongue</td>
-                                    <td>Malayalam</td>
+                                    <td>{details.mother_tongue}</td>
                                     <td>{tick}</td>
                                 </tr></table>
                         </div>
@@ -50,12 +58,12 @@ const ProfileView = () => {
                             <table>
                                 <tr>
                                     <td>Religion :</td>
-                                    <td>Chirstian</td>
+                                    <td>{details.religion}</td>
                                     <td>{tick}</td>
                                 </tr>
                                 <tr>
                                     <td>Caste :</td>
-                                    <td>RC</td>
+                                    <td>{details.caste}</td>
                                     <td>{tick}</td>
                                 </tr></table>
                         </div>
@@ -64,42 +72,42 @@ const ProfileView = () => {
                             <table>
                                 <tr>
                                     <td>Marital Status :</td>
-                                    <td>Never Married</td>
+                                    <td>{details.marital_status}</td>
                                     <td>{tick}</td>
                                 </tr>
                                 <tr>
                                     <td>Height :</td>
-                                    <td>5.6 | 167cm</td>
+                                    <td>{details.height}</td>
                                     <td>{tick}</td>
                                 </tr>
                                 <tr>
                                     <td>Weight :</td>
-                                    <td>55 kg</td>
+                                    <td>{details.weight}</td>
                                     <td>{tick}</td>
                                 </tr>
                                 <tr>
                                     <td>Blood Group</td>
-                                    <td>A+</td>
+                                    <td>{details.blood_group}</td>
                                     <td>{tick}</td>
                                 </tr>
                                 <tr>
                                     <td>Qualification :</td>
-                                    <td>MCA</td>
+                                    <td>{details.qualification}</td>
                                     <td>{tick}</td>
                                 </tr>
                                 <tr>
                                     <td>Occupation :</td>
-                                    <td>Manager</td>
+                                    <td>{details.ocupation}</td>
                                     <td>{tick}</td>
                                 </tr>
                                 <tr>
                                     <td>Any Disability :</td>
-                                    <td>Normal</td>
+                                    <td>{details.disability}</td>
                                     <td>{tick}</td>
                                 </tr>
                                 <tr>
                                     <td>Nationality :</td>
-                                    <td>Indian</td>
+                                    <td>{details.nationality}</td>
                                     <td>{tick}</td>
                                 </tr>
                                 </table>

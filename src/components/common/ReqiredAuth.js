@@ -10,11 +10,9 @@ const RequiredAuth = ({ allowedRoles }) => {
 
     const getUser = () => {
         let user = localStorage.getItem("user");
-        console.log(user);
-        if (user) {
+        if (user != null && user != undefined) {
             user = JSON.parse(user);
             setUser(user);
-            console.log("role ",user.role);
         } else {
             user = null;
             setUser({});
@@ -25,16 +23,15 @@ const RequiredAuth = ({ allowedRoles }) => {
         setIsLoading(true);
         getUser();
         setIsLoading(false);
-        console.log("allowedRoles ",allowedRoles);
     }, [])
 
     return (
 
         isLoading
             ? <p>Loading...</p>
-            : user.role == allowedRoles
-                ? user.status == 'Active'? <Outlet /> : <Navigate to="/status" state={{ status : user.status }} replace />
-                : <Navigate to="/signup" state={{ from: location }} replace />
+            : user && user?.role == allowedRoles
+            ? user.status == 'Active'? <Outlet /> : <Navigate to="/status" state={{ status : user.status }} replace />
+            : <Navigate to="/signup" state={{ from: location }} replace />
 
     );
 }

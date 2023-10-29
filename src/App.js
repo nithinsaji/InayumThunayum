@@ -11,6 +11,7 @@ import Status from './components/login/Status';
 import Fromyou from './components/user/Fromyou';
 import Interest from './components/user/Interest';
 import Onyou from './components/user/Onyou';
+import ProfileSetting from './components/user/ProfileSetting';
 import ProfileView from './components/user/ProfileView';
 import Search from './components/user/Search';
 import Shortlist from './components/user/Shortlist';
@@ -50,6 +51,7 @@ function App() {
             <Route path="" element={<Onyou />} exact />
             <Route path="fromyou" element={<Fromyou />} exact />
           </Route>
+          <Route path="settings" element={<ProfileSetting />} exact />
         </Route>
         </Route>
 
