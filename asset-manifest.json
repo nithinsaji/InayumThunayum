@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/InayumThunayum/static/css/main.9484f7a0.css",
-    "main.js": "/InayumThunayum/static/js/main.3826b69a.js",
+    "main.js": "/InayumThunayum/static/js/main.1157ba44.js",
     "static/media/bride1.jpg": "/InayumThunayum/static/media/bride1.938d399c03367eb74735.jpg",
     "static/media/bride3.jpg": "/InayumThunayum/static/media/bride3.6883f8b86e180d14a44a.jpg",
     "static/media/bride2.jpg": "/InayumThunayum/static/media/bride2.3333ba7580eb62698f73.jpg",
@@ -12,10 +12,10 @@
     "static/media/ring.png": "/InayumThunayum/static/media/ring.f72fdac8e519cce9a3c6.png",
     "index.html": "/InayumThunayum/index.html",
     "main.9484f7a0.css.map": "/InayumThunayum/static/css/main.9484f7a0.css.map",
-    "main.3826b69a.js.map": "/InayumThunayum/static/js/main.3826b69a.js.map"
+    "main.1157ba44.js.map": "/InayumThunayum/static/js/main.1157ba44.js.map"
   },
   "entrypoints": [
     "static/css/main.9484f7a0.css",
-    "static/js/main.3826b69a.js"
+    "static/js/main.1157ba44.js"
   ]
 }
