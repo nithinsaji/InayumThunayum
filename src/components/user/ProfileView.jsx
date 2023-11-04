@@ -16,7 +16,7 @@ const ProfileView = () => {
         <div className={`profileview`}>
             <div className='profileview__fixed'>
                 <i class="fa-solid fa-chevron-left" onClick={() => navigate(-1)}></i>
-                <span>No Name</span>
+                <span>Back</span>
             </div>
             <div>
                 <div className='view__container'>

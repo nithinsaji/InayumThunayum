@@ -11,13 +11,8 @@ const UpdateProfile = ({setEdit}) => {
     if (user != null && user != undefined) {
       user = JSON.parse(user);
       setUser(user);
-      await UserService.getProfileAPI(user?.id).then((res) => {
-        if (res.status === "success") {
-          setProfile({...res.data,name : user.name,mobile : user.mobile,id : user.id});
-        } else {
-          console.log(res.message);
-        }
-      });
+      const data = await UserService.getProfileAPI(user?.id);
+      setProfile({...data,name : user.name,mobile : user.mobile,id : user.id});
     } else {
       setUser({});
     }

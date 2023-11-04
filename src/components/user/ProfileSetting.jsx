@@ -14,12 +14,8 @@ const ProfileSetting = () => {
     if (user != null && user != undefined) {
       user = JSON.parse(user);
       setUser(user);
-      await UserService.getProfileAPI(user?.id).then((res) => {
-        if(res.status === 'success')
-            {setProfile(res.data);}else{
-                console.log(res.message);
-            }
-      });
+      const data = await UserService.getProfileAPI(user?.id);
+      setProfile(data);
     } else {
       setUser({});
     }

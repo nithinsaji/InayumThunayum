@@ -10,6 +10,11 @@ import SignUpForm from './components/login/SignUpForm';
 import Status from './components/login/Status';
 import Fromyou from './components/user/Fromyou';
 import Interest from './components/user/Interest';
+import InterestAccepted from './components/user/Interest/InterestAccepted';
+import InterestReceived from './components/user/Interest/InterestReceived';
+import InterestRejected from './components/user/Interest/InterestRejected';
+import RequestAccepted from './components/user/Interest/RequestAccepted';
+import RequestSend from './components/user/Interest/RequestSend';
 import Onyou from './components/user/Onyou';
 import ProfileSetting from './components/user/ProfileSetting';
 import ProfileView from './components/user/ProfileView';
@@ -48,8 +53,15 @@ function App() {
           <Route path="shortlist" element={<Shortlist />} exact />
           <Route path="profileview" element={<ProfileView />} exact />
           <Route path="interest" element={<Interest />} exact >
-            <Route path="" element={<Onyou />} exact />
-            <Route path="fromyou" element={<Fromyou />} exact />
+            <Route path="onyou" element={<Onyou />} exact >
+            <Route path="" element={<InterestReceived />} exact />
+            <Route path="accepted" element={<InterestAccepted />} exact />
+            <Route path="rejected" element={<InterestRejected />} exact />
+            </Route>
+            <Route path="fromyou" element={<Fromyou />} exact >
+            <Route path="" element={<RequestSend />} exact />
+            <Route path="accepted" element={<RequestAccepted />} exact />
+            </Route>
           </Route>
           <Route path="settings" element={<ProfileSetting />} exact />
         </Route>

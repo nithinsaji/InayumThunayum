@@ -1,27 +1,21 @@
-import React from 'react'
-import {  NavLink } from 'react-router-dom'
-import SmallCard from '../UI/SmallCard'
+import React from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
 const Onyou = () => {
-  return (<>
-  <div className="interest__nav">
-        <NavLink to={''} end>Requested</NavLink>
-        <NavLink to={'accepted'}>Accepted</NavLink>
-        <NavLink to={'rejected'}>Rejected</NavLink>
+  return (
+    <>
+      <div className="interest__nav">
+        <NavLink to={""} end>
+          Received
+        </NavLink>
+        <NavLink to={"accepted"}>Accepted</NavLink>
+        <NavLink to={"rejected"}>Rejected</NavLink>
       </div>
-    <div className='shortlist'>
-      <SmallCard />
-      <SmallCard />
-      <SmallCard />
-      <SmallCard />
-      <SmallCard />
-      <SmallCard />
-      <SmallCard />
-      <SmallCard />
-      <SmallCard />
-    </div>
-  </>
-  )
-}
+      <div className="shortlist">
+        <Outlet />
+      </div>
+    </>
+  );
+};
 
-export default Onyou
+export default Onyou;
