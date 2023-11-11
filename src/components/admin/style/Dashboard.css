@@ -70,6 +70,7 @@
 .sidebar .nav-list{
   margin-top: 20px;
   height: 100%;
+  padding: 0;
 }
 .sidebar li{
   position: relative;
@@ -228,7 +229,7 @@
 .home-section{
   position: relative;
   background: var(--body-color);
-  min-height: 100vh;
+  min-height: calc(100vh - 80px);
   top: 70px;
   left: 78px;
   width: calc(100% - 78px);

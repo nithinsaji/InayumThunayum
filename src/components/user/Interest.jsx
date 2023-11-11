@@ -7,8 +7,8 @@ const Interest = () => {
   return (
     <section className='Interest__container'>
       <div className="interest__nav">
+      <NavLink to={'fromyou'}>My request</NavLink>
         <NavLink to={'onyou'} >Interested on you</NavLink>
-        <NavLink to={'fromyou'}>My request</NavLink>
       </div>
       <div className="Interest__outlet">
         <Outlet />

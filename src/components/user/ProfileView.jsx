@@ -1,7 +1,7 @@
 import React from 'react'
 import './style/profileview.css'
-import bride1 from '../../assets/bride1.jpg'
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Carousel } from '../UI/Card';
 
 const ProfileView = () => {
 
@@ -21,7 +21,7 @@ const ProfileView = () => {
             <div>
                 <div className='view__container'>
                     <div className='view__scroll-image'>
-                        <img src={bride1} alt="" srcset="" />
+                        <Carousel details={details} />
                     </div>
                     <div className='view__profile-details'>
                         <div className="details__conatiner">

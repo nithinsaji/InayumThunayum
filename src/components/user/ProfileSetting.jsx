@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UserService from "../../services/user.service";
+import Button from "../UI/Button";
 import UpdateImage from "./UpdateImage";
 import UpdateProfile from "./UpdateProfile";
 
@@ -27,111 +28,103 @@ const ProfileSetting = () => {
     setLoading(false);
   }, []);
 
-  const tick = <i class="fa-solid fa-circle-check"></i>;
   return (
     <>
       {!loading && (
         <div className="view__profile-details">
-            {!edit ? <>
-              <button onClick={() => setEdit(true)}>Edit</button>
-          <div className="details__conatiner">
-            <UpdateImage id={user.id} />
-            <h2 className="view__title">
-              <i class="fa-solid fa-bars"></i>Basic Details
-            </h2>
-            <table>
-              <tr>
-                <td>Name :</td>
-                <td>{user?.name}</td>
-                <td>{tick}</td>
-              </tr>
-              <tr>
-                <td>House Name :</td>
-                <td>{profile?.house_name}</td>
-                <td>{tick}</td>
-              </tr>
-              <tr>
-                <td>DOB</td>
-                <td>{profile?.dob}</td>
-                <td>{tick}</td>
-              </tr>
-              <tr>
-                <td>Mother Tongue</td>
-                <td>{profile?.mother_tongue}</td>
-                <td>{tick}</td>
-              </tr>
-              <tr>
-                <td>Mobile</td>
-                <td>{user?.mobile}</td>
-                <td>{tick}</td>
-              </tr>
-            </table>
-          </div>
-          <div className="details__conatiner">
-            <h2 className="view__title">
-              <i class="fa-solid fa-person-praying"></i>Religion Details
-            </h2>
-            <table>
-              <tr>
-                <td>Religion :</td>
-                <td>{profile?.religion}</td>
-                <td>{tick}</td>
-              </tr>
-              <tr>
-                <td>Caste :</td>
-                <td>{profile?.caste}</td>
-                <td>{tick}</td>
-              </tr>
-            </table>
-          </div>
-          <div className="details__conatiner">
-            <h2 className="view__title">
-              <i class="fa-regular fa-user"></i>Personal Details
-            </h2>
-            <table>
-              <tr>
-                <td>Marital Status :</td>
-                <td>{profile?.marital_status}</td>
-                <td>{tick}</td>
-              </tr>
-              <tr>
-                <td>Height :</td>
-                <td>{profile?.height}</td>
-                <td>{tick}</td>
-              </tr>
-              <tr>
-                <td>Weight :</td>
-                <td>{profile?.weight}</td>
-                <td>{tick}</td>
-              </tr>
-              <tr>
-                <td>Blood Group</td>
-                <td>{profile?.blood_group}</td>
-                <td>{tick}</td>
-              </tr>
-              <tr>
-                <td>Qualification :</td>
-                <td>{profile?.qualification}</td>
-                <td>{tick}</td>
-              </tr>
-              <tr>
-                <td>Occupation :</td>
-                <td>{profile?.ocupation}</td>
-                <td>{tick}</td>
-              </tr>
-              <tr>
-                <td>Any Disability :</td>
-                <td>{profile?.disability}</td>
-                <td>{tick}</td>
-              </tr>
-              <tr>
-                <td>Nationality :</td>
-                <td>{profile?.nationality}</td>
-                <td>{tick}</td>
-              </tr>
-            </table>
-          </div>
-          </>: <UpdateProfile setEdit={setEdit} />}
+          {!edit ? (
+            <>
+              <Button style={'glassy'} onClick={() => setEdit(true)}>Edit</Button>
+              <div className="image__conatiner">
+                <UpdateImage id={user.id} />
+              </div>
+              <div className="profile_container">
+              <div className="details__conatiner">
+                <h2 className="view__title">
+                  <i class="fa-solid fa-bars"></i>Basic Details
+                </h2>
+                <table>
+                  <tr>
+                    <td>Name :</td>
+                    <td>{user?.name}</td>
+                  </tr>
+                  <tr>
+                    <td>House Name :</td>
+                    <td>{profile?.house_name}</td>
+                  </tr>
+                  <tr>
+                    <td>DOB</td>
+                    <td>{profile?.dob}</td>
+                  </tr>
+                  <tr>
+                    <td>Mother Tongue</td>
+                    <td>{profile?.mother_tongue}</td>
+                  </tr>
+                  <tr>
+                    <td>Mobile</td>
+                    <td>{user?.mobile}</td>
+                  </tr>
+                </table>
+              </div>
+              <div className="details__conatiner">
+                <h2 className="view__title">
+                  <i class="fa-solid fa-person-praying"></i>Religion Details
+                </h2>
+                <table>
+                  <tr>
+                    <td>Religion :</td>
+                    <td>{profile?.religion}</td>
+                  </tr>
+                  <tr>
+                    <td>Caste :</td>
+                    <td>{profile?.caste}</td>
+                  </tr>
+                </table>
+              </div>
+              <div className="details__conatiner">
+                <h2 className="view__title">
+                  <i class="fa-regular fa-user"></i>Personal Details
+                </h2>
+                <table>
+                  <tr>
+                    <td>Marital Status :</td>
+                    <td>{profile?.marital_status}</td>
+                  </tr>
+                  <tr>
+                    <td>Height :</td>
+                    <td>{profile?.height}</td>
+                  </tr>
+                  <tr>
+                    <td>Weight :</td>
+                    <td>{profile?.weight}</td>
+                  </tr>
+                  <tr>
+                    <td>Blood Group</td>
+                    <td>{profile?.blood_group}</td>
+                  </tr>
+                  <tr>
+                    <td>Qualification :</td>
+                    <td>{profile?.qualification}</td>
+                  </tr>
+                  <tr>
+                    <td>Occupation :</td>
+                    <td>{profile?.ocupation}</td>
+                  </tr>
+                  <tr>
+                    <td>Any Disability :</td>
+                    <td>{profile?.disability}</td>
+                  </tr>
+                  <tr>
+                    <td>Nationality :</td>
+                    <td>{profile?.nationality}</td>
+                  </tr>
+                </table>
+              </div>
+              </div>
+            </>
+          ) : (
+            <UpdateProfile setEdit={setEdit} />
+          )}
         </div>
       )}
     </>

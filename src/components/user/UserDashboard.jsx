@@ -30,7 +30,7 @@ const UserDashboard = () => {
                         <span className="tooltip">Search</span>
                     </li>
                     <li>
-                        <Link to='interest/onyou'>
+                        <Link to='interest/fromyou'>
                         <i class="fa-regular fa-heart"></i>
                             <span className="links_name">Interest</span>
                         </Link>

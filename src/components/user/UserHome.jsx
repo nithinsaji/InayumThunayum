@@ -20,6 +20,16 @@ const UserHome = () => {
       user = JSON.parse(user);
       await UserService.getProfileAPI(user?.id);
       await UserService.getFavoriteListAPI(user?.id);
+      if (interestList == null) {
+        let interest = {};
+        await InterestService.getAllInterestListAPI(user?.id).then((res) => {
+          res.map((id) => {
+            interest[id.id] = true;
+          });
+        });
+        localStorage.setItem("interest", JSON.stringify(interest));
+        setInterestList(interest);
+      }
     }
   };
 
@@ -55,19 +65,14 @@ const UserHome = () => {
           (value) => value.id === fav_id
         );
         const favoriteIndex = favoriteList.findIndex((f) => f.id === fav_id);
-        
-        if(res.added === true){
-          favoriteList.push(searchResult[searchIndex])
-           localStorage.setItem(
-              "favoriteList",
-              JSON.stringify(favoriteList)
-            )
-            }else{ 
-              favoriteList.splice(favoriteIndex, 1);
-              localStorage.setItem(
-              "favoriteList",
-              JSON.stringify(favoriteList)
-            );}
+
+        if (res.added === true) {
+          favoriteList.push(searchResult[searchIndex]);
+          localStorage.setItem("favoriteList", JSON.stringify(favoriteList));
+        } else {
+          favoriteList.splice(favoriteIndex, 1);
+          localStorage.setItem("favoriteList", JSON.stringify(favoriteList));
+        }
         localStorage.setItem(
           "favorite",
           JSON.stringify({ ...favoriteList, [fav_id]: res.added })
