@@ -119,3 +119,13 @@
     max-height: 100%;
     max-width: 100%;
 }
+
+.image_wrapper{
+    max-width: 750px;
+}
+form .image_container{
+    border: 2px dashed grey;
+    background-color: #80808094;
+    padding: 10px;
+    margin: 10px;
+}

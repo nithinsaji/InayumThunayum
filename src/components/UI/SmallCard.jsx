@@ -1,6 +1,6 @@
 import React from "react";
 import "./style/Smallcard.css";
-import bride1 from "../../assets/bride2.jpg";
+import noimage from "../../assets/no-image.jpg";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const SmallCard = ({
     <div className="sm-container">
       <Link to="/Dashboard/profileview" state={details}>
       <div className="sm-image">
-        <img src={bride1} alt="" srcset="" />
+        {details.image1 ? <img src={`https://drive.google.com/uc?id=${details.image1}`} alt="" srcset="" />: <img src={noimage} alt="" srcset="" />}
       </div>
       </Link>
       <div className="sm-details">

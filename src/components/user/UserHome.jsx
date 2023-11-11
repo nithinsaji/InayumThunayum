@@ -20,7 +20,7 @@ const UserHome = () => {
       user = JSON.parse(user);
       await UserService.getProfileAPI(user?.id);
       await UserService.getFavoriteListAPI(user?.id);
-      if (interestList == null) {
+      if (Object.keys(interestList).length === 0) {
         let interest = {};
         await InterestService.getAllInterestListAPI(user?.id).then((res) => {
           res.map((id) => {
@@ -56,7 +56,7 @@ const UserHome = () => {
   const favorite = async (fav_id) => {
     let user = localStorage.getItem("user");
     let searchResult = JSON.parse(localStorage.getItem("searchResult"));
-    let favoriteList = JSON.parse(localStorage.getItem("favoriteList"));
+    let favoriteArr = JSON.parse(localStorage.getItem("favoriteList"));
 
     if (user != null && user != undefined) {
       user = JSON.parse(user);
@@ -64,14 +64,14 @@ const UserHome = () => {
         const searchIndex = searchResult.findIndex(
           (value) => value.id === fav_id
         );
-        const favoriteIndex = favoriteList.findIndex((f) => f.id === fav_id);
+        const favoriteIndex = favoriteArr.findIndex((f) => f.id === fav_id);
 
         if (res.added === true) {
-          favoriteList.push(searchResult[searchIndex]);
-          localStorage.setItem("favoriteList", JSON.stringify(favoriteList));
+          favoriteArr.push(searchResult[searchIndex]);
+          localStorage.setItem("favoriteList", JSON.stringify(favoriteArr));
         } else {
-          favoriteList.splice(favoriteIndex, 1);
-          localStorage.setItem("favoriteList", JSON.stringify(favoriteList));
+          favoriteArr.splice(favoriteIndex, 1);
+          localStorage.setItem("favoriteList", JSON.stringify(favoriteArr));
         }
         localStorage.setItem(
           "favorite",
