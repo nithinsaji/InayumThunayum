@@ -23,12 +23,18 @@
     color: var(--white-color);
 }
 
+.secondary{
+    background-color: white;
+    border: 1px solid violet;
+}
+
 /* normal */
 .normal{
     background-color: var(--white-color);
     color: black;
     font-size: 12px;
 }
+
 
 /* glassy */
 .glassy{

@@ -10,3 +10,19 @@ const Button = ({children, onClick, style}) => {
 }
 
 export default Button
+
+export const Primary = ({children, onClick}) => {
+    return (
+        <button className={`button gradient hover`} onClick={onClick} >
+            {children}
+        </button>
+    )
+}
+
+export const Secondary = ({children, onClick}) => {
+    return (
+        <button className={`button secondary`} onClick={onClick} >
+            {children}
+        </button>
+    )
+}

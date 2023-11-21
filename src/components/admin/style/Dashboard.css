@@ -229,7 +229,7 @@
 .home-section{
   position: relative;
   background: var(--body-color);
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 70px);
   top: 70px;
   left: 78px;
   width: calc(100% - 78px);
@@ -269,4 +269,5 @@
   position: fixed;
   top: 0;
   z-index: 3;
+  left: 0;
 }

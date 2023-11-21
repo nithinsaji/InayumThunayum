@@ -13,7 +13,7 @@
 .form__container{
     width: 100%;
 }
-.form__container input{
+.form__container input:not([type = 'radio']){
     width: 100%;
     margin-bottom: 20px;
     background-color: transparent;
@@ -90,7 +90,7 @@
 }
 
 .status{
-    min-height: 100dvh;
+    min-height: calc(100dvh - 345px);
     display: flex;
     flex-direction: column;
     justify-content: center;

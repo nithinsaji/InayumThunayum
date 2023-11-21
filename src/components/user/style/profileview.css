@@ -42,7 +42,7 @@
     
 }
 .view__profile-details .view__title{
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     position: relative;
 }
 .view__title i{
@@ -56,9 +56,10 @@
     left: -30px;
 }
 .details__conatiner{
-    margin-bottom: 50px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 321px) {
     .view__container{
         gap: 20px;
     }
@@ -128,4 +129,22 @@ form .image_container{
     background-color: #80808094;
     padding: 10px;
     margin: 10px;
+}
+
+.radio_group{
+    display: flex;
+    align-items: center;
+}
+.radio_group label{
+    margin-right: 10px;
+    color: black;
+    font-size: 16px;
+}
+.radio_group input{
+    margin-left: 15px;
+    margin-right: 5px;
+}
+.btn_group{
+    display: flex;
+    gap: 20px;
 }

@@ -12,6 +12,9 @@
     display: flex;
     flex-direction: column;
     width: minmax(30%,30%);
+    box-shadow: 0 0 1px 0 rgba(8, 11, 14, 0.06), 0 6px 6px -1px rgba(8, 11, 14, 0.1);
+    border-radius: 12px;
+    border: 1px solid #F7F8F9;
 }
 .card i{
     color: var(--first-color);

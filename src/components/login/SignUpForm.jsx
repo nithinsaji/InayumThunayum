@@ -22,10 +22,11 @@ const SignUpForm = () => {
       name: "name",
       type: "text",
       errorMessage:
-        "Username should be 3-16 characters and shouldn't include any special character!",
-      label: "Username",
-      pattern: "^[A-Za-z0-9]{3,16}$",
+        "Full Name shouldn't include any special character & numbers!",
+      label: "Full Name",
+      pattern: "^[A-Za-z ]{3,16}$",
       required: true,
+      placeholder : 'Enter you Full Name'
     },
     {
       id: 2,
@@ -35,6 +36,7 @@ const SignUpForm = () => {
       label: "Mobile Number",
       pattern: "^[0-9]{10}$",
       required: true,
+      placeholder : 'eg :- 9876543210 '
     },
     {
       id: 3,
@@ -43,6 +45,7 @@ const SignUpForm = () => {
       errorMessage: "It should not be a valid email address!",
       label: "Email",
       required: true,
+      placeholder : 'Enter you email'
     },
     {
       id: 4,
@@ -53,6 +56,7 @@ const SignUpForm = () => {
       label: "Password",
       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
+      placeholder : 'Password'
     },
     {
       id: 5,
@@ -62,6 +66,7 @@ const SignUpForm = () => {
       label: "Confirm Password",
       pattern: values.password,
       required: true,
+      placeholder : 'Confirm Password'
     },
   ];
 

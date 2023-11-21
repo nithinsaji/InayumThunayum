@@ -1,7 +1,7 @@
 import React from 'react'
 import './style/About.css'
 import hero from '../../assets/hero.png'
-import ring from '../../assets/ring.png'
+import { ParagraphText, TitleText } from '../UI/Text'
 
 const About = () => {
   return (
@@ -9,12 +9,12 @@ const About = () => {
         <div className="list__container container grid">
             <div className="list__content">
                 <h5>About Us</h5>
-                <h1>
+                <TitleText>
                     Your Business Success Built On A Powerful Customer Experience Platform
-                </h1>
-                <p className="home__description">
+                </TitleText>
+                <ParagraphText className="home__description">
                     We bring people together. Love unites them...
-                </p>
+                </ParagraphText>
                 <div className="home__box">
                     <div>
                         <h3>300+</h3>
@@ -32,83 +32,83 @@ const About = () => {
             </div>
             <img src={hero} alt="home-image" srcset="" className='home__img' />
         </div>
-        <div className="list__container container grid">
+        <div className="list__container container">
             <div className="list__content">
                 <h5>How it works</h5>
-                <h1>
+                <TitleText>
                     Simplify Your Search In 3 Easy Steps
-                </h1>
-                <p className="home__description">
+                </TitleText>
+                <ParagraphText className="home__description">
                     Here is how to use our service.
-                </p>
+                </ParagraphText>
             </div>
-            <div className="grid">
+            <div className="process_flex">
             <div className="list__content">
             <i class="fa-regular fa-clipboard icon"></i>
-                <h1>
+                <TitleText>
                     Register
-                </h1>
-                <p className="home__description">
+                </TitleText>
+                <ParagraphText className="home__description">
                     Here is how to use our service.
-                </p>
+                </ParagraphText>
             </div>
             <div className="list__content">
             <i class="fa-solid fa-magnifying-glass icon"></i>
-                <h1>
+                <TitleText>
                     Search & Connect
-                </h1>
-                <p className="home__description">
+                </TitleText>
+                <ParagraphText className="home__description">
                     Here is how to use our service.
-                </p>
+                </ParagraphText>
             </div>
             <div className="list__content">
             <i class="fa-solid fa-handshake icon"></i>
-                <h1>
+                <TitleText>
                     Meet & Marry
-                </h1>
-                <p className="home__description">
+                </TitleText>
+                <ParagraphText className="home__description">
                     Here is how to use our service.
-                </p>
+                </ParagraphText>
             </div>
             </div>
         </div>
         <div className="list__container container grid">
             <div className="list__content">
                 <h5>Why Us</h5>
-                <h1>
+                <TitleText>
                     Why Choose My Matrimony?
-                </h1>
-                <p className="home__description">
+                </TitleText>
+                <ParagraphText className="home__description">
                     Here why lots of people choose my Matrimony.
-                </p>
+                </ParagraphText>
             </div>
             <div className="grid">
             <div className="list__content">
             <i class="fa-solid fa-user-pen icon"></i>
-                <h1>
+                <TitleText>
                     Simple to use
-                </h1>
-                <p className="home__description">
+                </TitleText>
+                <ParagraphText className="home__description">
                     Here is how to use our service.
-                </p>
+                </ParagraphText>
             </div>
             <div className="list__content">
             <i class="fa-regular fa-compass icon"></i>
-                <h1>
+                <TitleText>
                     Smart Matching
-                </h1>
-                <p className="home__description">
+                </TitleText>
+                <ParagraphText className="home__description">
                     Here is how to use our service.
-                </p>
+                </ParagraphText>
             </div>
             <div className="list__content">
             <i class="fa-regular fa-comment-dots icon"></i>
-                <h1>
+                <TitleText>
                     Cool Community
-                </h1>
-                <p className="home__description">
+                </TitleText>
+                <ParagraphText className="home__description">
                     Here is how to use our service.
-                </p>
+                </ParagraphText>
             </div>
             </div>
         </div>

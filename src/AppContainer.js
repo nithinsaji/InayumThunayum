@@ -11,7 +11,7 @@ const AppContainer = () => {
 
   return (
     <Provider store={store}>
-      <Toaster richColors position="top-right"/>
+      <Toaster richColors position="top-right" closeButton/>
       <App />
     </Provider>
   );

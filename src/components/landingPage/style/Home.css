@@ -5,15 +5,7 @@
 .home__data{
     text-align: center;
 }
-.home__title{
-    font-size: var(--biggest-font-size);
-    font-family: var(--second-font);
-    font-weight: var(--font-medium);
-    line-height: 135%;
-    position: relative;
-    width: max-content;
-    margin: 0 auto 1.25rem;
-}
+
 .home__title-box div{
     background: var(--gradient-color);
     padding: .25rem .25rem;
@@ -28,4 +20,29 @@
 .home__img{
     width: 320px;
     justify-self: center;
+}
+
+@media screen and (max-width: 1024px) {
+    section{
+        max-width: 1156px;
+        padding: 0 1.5rem;
+    }
+}
+@media screen and (max-width: 769px) {
+    section{
+        max-width: 960px;
+        width: 100%;
+    }
+    .home__img{
+        width: 250px;
+    }
+}
+@media screen and (max-width: 426px) {
+    section{
+        width: 100%;
+        padding-top: 0;
+    }
+    .home__img{
+        width: 200px;
+    }
 }

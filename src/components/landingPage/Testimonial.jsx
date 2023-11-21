@@ -1,5 +1,6 @@
 import React from 'react'
 import hero from '../../assets/second.png'
+import { TitleText } from '../UI/Text'
 import './style/Testimonial.css'
 
 const Testimonial = () => {
@@ -8,9 +9,9 @@ const Testimonial = () => {
             <div className="list__container container grid">
                 <div className="list__content">
                     <h5>Testimonials</h5>
-                    <h1>
+                    <TitleText>
                         What Our Client Says About Us.
-                    </h1>
+                    </TitleText>
                     <div className="card__list">
                     <div className="card">
                         <i class="fa-solid fa-quote-left"></i>

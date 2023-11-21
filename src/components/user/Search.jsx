@@ -55,7 +55,7 @@ const Search = () => {
         <div class="input-box">
           <label>Place</label>
           <div class="select-box">
-              <select onChange={onChange} name="place">
+              <select onChange={onChange} name="place" >
                 <option hidden>Place</option>
                 <option>Nilgiris</option>
                 <option>Malapuram</option>

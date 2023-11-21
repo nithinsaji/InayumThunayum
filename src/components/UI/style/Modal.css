@@ -1,0 +1,20 @@
+.modalStyles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #00000078;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalContent {
+  margin: auto;
+  background-color: white;
+  width: 300px;
+  padding: 2rem;
+  z-index: 101;
+  border-radius: 12px;
+}

@@ -14,9 +14,9 @@
     font-size: var(--small-font-size);
 }
 /* Navigation for mobile */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
     .list__container{
-        padding: 3rem 0;
+        padding: 1rem 0;
     }
 
 }
@@ -35,5 +35,24 @@
     background-color: var(--gradient-color);
     top: 0 ;
     right: -20px;
+
+}
+.process_flex{
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+.process_flex .list__content{
+    box-shadow: 0 0 1px 0 rgba(8, 11, 14, 0.06), 0 6px 6px -1px rgba(8, 11, 14, 0.1);
+    border: 1px solid #F7F8F9;
+    padding: 2rem;
+    max-width: 50%;
+    border-radius: 12px;
+}
+@media screen and (max-width: 425px) {
+    .process_flex .list__content{
+        max-width: 100%;
+        width: 100%;
+    }
 
 }

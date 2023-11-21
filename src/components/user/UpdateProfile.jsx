@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import UserService from "../../services/user.service";
+import { Primary, Secondary } from "../UI/Button";
+import Input from "../UI/Input";
 
-const UpdateProfile = ({setEdit}) => {
+const UpdateProfile = ({ setEdit }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
   const [profile, setProfile] = useState({});
@@ -12,7 +14,12 @@ const UpdateProfile = ({setEdit}) => {
       user = JSON.parse(user);
       setUser(user);
       const data = await UserService.getProfileAPI(user?.id);
-      setProfile({...data,name : user.name,mobile : user.mobile,id : user.id});
+      setProfile({
+        ...data,
+        name: user.name,
+        mobile: user.mobile,
+        id: user.id,
+      });
     } else {
       setUser({});
     }
@@ -28,18 +35,23 @@ const UpdateProfile = ({setEdit}) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   };
 
-  const onSubmitHandler = async() =>{
+  const onSubmitHandler = async () => {
     await UserService.updateProfileAPI(profile).then((res) => {
-        console.log(res?.message);
-        })
-      };
+      console.log(res?.message);
+    });
+  };
 
   const BasicDetailsInputs = [
     {
       id: 1,
       name: "name",
       type: "text",
-      label: "Name",
+      errorMessage:
+        "Full Name shouldn't include any special character & numbers!",
+      label: "Full Name",
+      pattern: "^[A-Za-z ]{3,16}$",
+      required: true,
+      placeholder: "Enter your Full Name",
       defaultValue: user?.name,
     },
     {
@@ -47,27 +59,44 @@ const UpdateProfile = ({setEdit}) => {
       name: "house_name",
       type: "text",
       label: "House Name",
+      errorMessage:
+        "House Name shouldn't include any special character & numbers!",
+      pattern: "^[A-Za-z ]{3,16}$",
+      placeholder: "Enter your House Name",
       defaultValue: profile?.house_name,
     },
     {
       id: 3,
       name: "dob",
-      type: "text",
+      type: "date",
       label: "D.O.B",
+      errorMessage:
+        "House Name shouldn't include any special character & numbers!",
+      pattern: "^[A-Za-z ]{3,16}$",
+      placeholder: "MM/dd/yyyy",
       defaultValue: profile?.dob,
+      required: true,
     },
     {
       id: 4,
       name: "mother_tongue",
       type: "text",
       label: "Mother Tongue",
+      errorMessage:
+        "Mother Tongue shouldn't include any special character & numbers!",
+      pattern: "^[A-Za-z ]{3,16}$",
+      placeholder: "Enter your Mother Tongue",
       defaultValue: profile?.mother_tongue,
     },
     {
       id: 5,
-      name: "mobile",
+      name: "number",
       type: "tel",
+      errorMessage: "It should not be a valid Mobile number!",
       label: "Mobile Number",
+      pattern: "^[0-9]{10}$",
+      required: true,
+      placeholder: "eg :- 9876543210",
       defaultValue: user?.mobile,
     },
     {
@@ -75,23 +104,30 @@ const UpdateProfile = ({setEdit}) => {
       name: "age",
       type: "number",
       label: "Age",
+      errorMessage: "Age between 18 to 99",
+      min: "18",
+      max: "99",
+      placeholder: "Enter your Age",
+      required: true,
       defaultValue: profile?.age,
-    }
+    },
   ];
 
   const ReligionDetailsInput = [
     {
       id: 1,
       name: "religion",
-      type: "text",
+      type: "select",
       label: "Religion",
+      options: ["Christian"],
       defaultValue: profile?.religion,
     },
     {
       id: 2,
       name: "caste",
-      type: "text",
+      type: "select",
       label: "Caste",
+      options: ["RC"],
       defaultValue: profile?.caste,
     },
   ];
@@ -100,8 +136,9 @@ const UpdateProfile = ({setEdit}) => {
     {
       id: 1,
       name: "marital_status",
-      type: "text",
+      type: "select",
       label: "Marital Status",
+      options: ["First Marriage", "Second Marriage"],
       defaultValue: profile?.marital_status,
     },
     {
@@ -109,137 +146,128 @@ const UpdateProfile = ({setEdit}) => {
       name: "height",
       type: "text",
       label: "Height",
+      placeholder: "eg :- 180cm",
       defaultValue: profile?.height,
     },
     {
-        id: 3,
-        name: "weight",
-        type: "text",
-        label: "Weight",
-        defaultValue: profile?.weight,
-      },
-      {
-        id: 4,
-        name: "blood_group",
-        type: "text",
-        label: "Blood Group",
-        defaultValue: profile?.blood_group,
-      },{
-        id: 5,
-        name: "qualification",
-        type: "text",
-        label: "Qualification",
-        defaultValue: profile?.qualification,
-      },
-      {
-        id: 6,
-        name: "ocupation",
-        type: "text",
-        label: "Occupation",
-        defaultValue: profile?.ocupation,
-      },
-      {
-        id: 7,
-        name: "disability",
-        type: "text",
-        label: "Disability",
-        defaultValue: profile?.disability,
-      },
-      {
-        id: 8,
-        name: "nationality",
-        type: "text",
-        label: "Nationality",
-        defaultValue: profile?.nationality,
-      },
+      id: 3,
+      name: "weight",
+      type: "text",
+      label: "Weight",
+      placeholder: "eg:- 65kg",
+      defaultValue: profile?.weight,
+    },
+    {
+      id: 4,
+      name: "blood_group",
+      type: "text",
+      label: "Blood Group",
+      placeholder: "eg:- A+",
+      defaultValue: profile?.blood_group,
+    },
+    {
+      id: 5,
+      name: "qualification",
+      type: "text",
+      label: "Qualification",
+      placeholder: "Enter your qualification",
+      defaultValue: profile?.qualification,
+    },
+    {
+      id: 6,
+      name: "ocupation",
+      type: "text",
+      label: "Occupation",
+      placeholder: "Enter your Age",
+      defaultValue: profile?.ocupation,
+    },
+    {
+      id: 7,
+      name: "disability",
+      type: "text",
+      label: "Disability",
+      placeholder: "eg:- Enter Normal or disability name",
+      defaultValue: profile?.disability,
+    },
+    {
+      id: 8,
+      name: "nationality",
+      type: "select",
+      label: "Nationality",
+      options: ["Indian"],
+      defaultValue: profile?.nationality,
+    },
   ];
 
   return (
     <>
-      {!loading && <>
-          <div className="details__conatiner">
+      {!loading && (
+        <>
+          <div className="details__conatiner form__container">
             <h2 className="view__title">
               <i class="fa-solid fa-bars"></i>Basic Details
             </h2>
-            <table>
-            <tbody>
-              {BasicDetailsInputs.map((info) => (
-                <tr key={info.id}>
-                  <td>{info.label}</td>
-                  <td>
-                    :&nbsp;
-                    <input
-                      type={info.type}
-                      name={info.name}
-                      defaultValue={info.defaultValue}
-                      onChange={onChange}
-                    />
-                  </td>
-                </tr>
-              ))}
-              <tr>
-                <td>Gender</td>
-                <td>
-                  <input type="radio" name="gender" value="male" id="" onChange={onChange}/>Male
-                  <input type="radio" name="gender" value="female" id="" onChange={onChange}/>Female
-                </td>
-              </tr>
-              </tbody>
-            </table>
+            {BasicDetailsInputs.map((info) => (
+              <Input
+                {...info}
+                defaultValue={info.defaultValue}
+                onChange={onChange}
+              />
+            ))}
+            <div className="radio_group">
+              <label htmlFor="">Gender</label>:
+              <input
+                type="radio"
+                name="gender"
+                value="male"
+                id=""
+                onChange={onChange}
+                defaultChecked={profile?.gender === "male" && true}
+              />
+              <span>Male</span>
+              <input
+                type="radio"
+                name="gender"
+                value="female"
+                id=""
+                onChange={onChange}
+                defaultChecked={profile?.gender === "female" && true}
+              />
+              <span>Female</span>
+            </div>
           </div>
           <div className="details__conatiner">
             <h2 className="view__title">
               <i class="fa-solid fa-person-praying"></i>Religion Details
             </h2>
-            <table>
-            <tbody>
-              {ReligionDetailsInput.map((info) => (
-                <tr key={info.id}>
-                  <td>{info.label}</td>
-                  <td>
-                    :&nbsp;
-                    <input
-                      type={info.type}
-                      name={info.name}
-                      defaultValue={info.defaultValue}
-                      onChange={onChange}
-                    />
-                  </td>
-                </tr>
-              ))}
-              </tbody>
-            </table>
+            {ReligionDetailsInput.map((info) => (
+              <Input
+                {...info}
+                defaultValue={info.defaultValue}
+                onChange={onChange}
+              />
+            ))}
           </div>
-          <div className="details__conatiner">
+          <div className="details__conatiner form__container">
             <h2 className="view__title">
               <i class="fa-regular fa-user"></i>Personal Details
             </h2>
-            <table>
-            <tbody>
             {PersonalDetailsInput.map((info) => (
-                <tr key={info.id}>
-                  <td>{info.label}</td>
-                  <td>
-                    :&nbsp;
-                    <input
-                      type={info.type}
-                      name={info.name}
-                      defaultValue={info.defaultValue}
-                      onChange={onChange}
-                    />
-                  </td>
-                </tr>
-              ))}
-              </tbody>
-            </table>
+              <Input
+                {...info}
+                defaultValue={info.defaultValue}
+                onChange={onChange}
+              />
+            ))}
           </div>
-          <button onClick={() => setEdit(false)}>Cancel</button>
-          <button onClick={onSubmitHandler}>Update</button>
-</>
-      }
+          <div className="btn_group">
+            <Secondary onClick={() => setEdit(false)}>Cancel</Secondary>
+            <Primary onClick={onSubmitHandler}>Update</Primary>
+          </div>
+        </>
+      )}
     </>
   );
 };
 
 export default UpdateProfile;
-

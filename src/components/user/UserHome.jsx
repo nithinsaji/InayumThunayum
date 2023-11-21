@@ -22,8 +22,8 @@ const UserHome = () => {
       await UserService.getFavoriteListAPI(user?.id);
       if (Object.keys(interestList).length === 0) {
         let interest = {};
-        await InterestService.getAllInterestListAPI(user?.id).then((res) => {
-          res.map((id) => {
+        await InterestService.getAllInterestListAPI(user?.id).then((response) => {
+          response.interestList !== undefined && response?.map((id) => {
             interest[id.id] = true;
           });
         });
@@ -66,7 +66,7 @@ const UserHome = () => {
         );
         const favoriteIndex = favoriteArr.findIndex((f) => f.id === fav_id);
 
-        if (res.added === true) {
+        if (res?.added === true) {
           favoriteArr.push(searchResult[searchIndex]);
           localStorage.setItem("favoriteList", JSON.stringify(favoriteArr));
         } else {
@@ -75,9 +75,9 @@ const UserHome = () => {
         }
         localStorage.setItem(
           "favorite",
-          JSON.stringify({ ...favoriteList, [fav_id]: res.added })
+          JSON.stringify({ ...favoriteList, [fav_id]: res?.added })
         );
-        setFavoriteList({ ...favoriteList, [fav_id]: res.added });
+        setFavoriteList({ ...favoriteList, [fav_id]: res?.added });
       });
     }
   };
@@ -91,12 +91,12 @@ const UserHome = () => {
           "interest",
           JSON.stringify({
             ...interestList,
-            [sendId]: res.status == "success" ? true : false,
+            [sendId]: res?.status == "success" ? true : false,
           })
         );
         setInterestList({
           ...interestList,
-          [sendId]: res.status == "success" ? true : false,
+          [sendId]: res?.status == "success" ? true : false,
         });
       });
     }

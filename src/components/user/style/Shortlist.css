@@ -9,7 +9,7 @@
 
 /* User Home Styling */
 .userhome__container{
-    margin: 10px 15px;
+    padding: 10px 5px;
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));

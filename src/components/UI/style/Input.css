@@ -1,7 +1,8 @@
 .input__box{
     position: relative;
 }
-.input__box input{
+.input__box input,
+.input__box .select-box select{
     width: 100%;
     padding: 10px 0;
     border: 0;
@@ -9,18 +10,21 @@
     outline: none;
     background-color: transparent;
 }
-.input__box label{
+.input__box .select-box select{
+    margin-bottom: 20px;
+}
+.input__box .select-box select option{
+    padding: 5px 10px;
+}
+.input__box label,
+.input__box .select-box select label{ 
     position: absolute;
     font-size: 16px;
     top: 0;
     left: 0;
-    color: var(--text-color-light);
+    color: black;
     transition: .3s;
-}
-.input__box input:focus ~ label,
-.input__box input:valid ~ label{
-    transform: translateY(-10px);
-    font-size: 14px;
+    transform: translateY(-15px);
 }
 
 .error{
@@ -31,7 +35,7 @@
     color: red;
     display: none;
 }
-input:invalid[focused="true"] ~ label{
+input:invalid~ label{
     color: red;
 }
 input:invalid[focused="true"]{
@@ -40,4 +44,13 @@ input:invalid[focused="true"]{
 
 input:invalid[focused="true"] ~ span{
     display: block;
+}
+input::placeholder{
+    color: var(--text-color-light);
+    font-size: 14px;
+}
+
+.label>span{
+    color: rgb(167, 167, 167);
+    font-size: 12px;
 }

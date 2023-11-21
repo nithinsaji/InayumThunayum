@@ -1,0 +1,28 @@
+.bannerText{
+    font-size: 48px;
+    font-family: var(--second-font);
+    font-weight: var(--font-medium);
+    line-height: 135%;
+    position: relative;
+    width: max-content;
+    margin: auto;
+}
+
+.titleText{
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.paragraphText{
+    font-size: 17px;
+    color: #505256;
+    margin-bottom: 40px;
+}
+@media screen and (max-width: 426px) {
+    .titleText{
+        margin-bottom: 8px;
+    }
+    .paragraphText{
+        margin-bottom: 20px;
+    }
+}

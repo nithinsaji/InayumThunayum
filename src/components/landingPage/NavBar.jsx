@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import Button from '../UI/Button';
+import Button, { Primary, Secondary } from '../UI/Button';
 import './style/Navbar.css'
 
 const NavBar = () => {
@@ -8,7 +8,7 @@ const NavBar = () => {
     return (
         <header className='header' id='header'>
             <nav className="nav container">
-                <a href="" className="nav__logo">MY Matrimony</a>
+                <a href="" className="nav__logo">Inayum & Thunayum</a>
                 <div className={`nav__menu ${Menu && 'show-menu'}`} id='nav-menu'>
                     <ul className="nav__list">
                         <li className="nav__item">
@@ -21,14 +21,16 @@ const NavBar = () => {
                             <a href="#testimonial" className="nav__link" onClick={() => setMenu(false)}>Testimonial</a>
                         </li>
                         <li className="nav__item">
-                            <Link to="/signin" style={{ textDecoration: "none" }} className="nav__logo" onClick={() => setMenu(false)}>Log In</Link>
+                            <Link to="/signin" style={{ textDecoration: "none" }} className="nav__logo" onClick={() => setMenu(false)}>
+                            <Secondary>SignIn</Secondary>
+                            </Link>
                         </li>
                         <li className="nav__item">
                             <Link to="/signup" style={{ textDecoration: "none" }} onClick={() => setMenu(false)}>
-                                <Button style={'gradient hover'}>
-                                    Sign Up
+                                <Primary>
+                                    SignUp
                                     <i class="fa-solid fa-arrow-right"></i>
-                                </Button>
+                                </Primary>
 
                             </Link>
                         </li>

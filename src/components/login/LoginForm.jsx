@@ -5,6 +5,7 @@ import { toast } from 'sonner'
 import AuthService from '../../services/auth.service'
 import Input from '../UI/Input'
 import Loader from '../UI/Loader'
+import Modal from '../UI/Modal'
 import './style/Login.css'
 
 
@@ -51,6 +52,9 @@ const LoginForm = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => setShowModal(state => !state);
+
   return (
     <section className="app__container">
       <div className="box">
@@ -59,9 +63,9 @@ const LoginForm = () => {
           <div className='box__container'>
             <h1>Login</h1>
             <form className="form__container" onSubmit={handleSubmit}>
-              <Input type={'email'} name={'email'} label={'Email'} onChange={onChange} value={values.email} />
-              <Input type={'password'} name={'password'} label={'Password'} onChange={onChange} value={values.password} />
-              <a href="#" className='muted__link'>Forgot Your Password?</a>
+              <Input type={'email'} name={'email'} label={'Email'} onChange={onChange} value={values.email} required/>
+              <Input type={'password'} name={'password'} label={'Password'} onChange={onChange} value={values.password} required/>
+              <a href="#" className='muted__link' onClick={() => setShowModal(true)}>Forgot Your Password?</a>
               <div className='last'>
                 <button className='submit__button'>
                   {loading && <Loader />}
@@ -73,6 +77,7 @@ const LoginForm = () => {
           </div>
         </div>
       </div>
+      {showModal && <Modal updateModalState={toggleModal} />}
     </section>
   )
 }

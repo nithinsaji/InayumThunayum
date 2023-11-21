@@ -1,31 +1,34 @@
 import React from 'react'
 import './style/Home.css'
 import hero from '../../assets/second.png'
-import Search from '../landingPage/Search'
 import Button from '../UI/Button'
+import { BannerText, ParagraphText } from '../UI/Text'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
     <section className='home section' id='home'>
         <div className="home__container container grid">
+        
             <div className="home__data">
-                <h1 className="home__title">
+                <BannerText>
                     Find Your
                     <div className="home__title-box">
                         <div>Perfect</div> Partner.
                     </div>
-                </h1>
-                <p className="home__description">
+                </BannerText>
+                <ParagraphText>
                     We bring people together. Love unites them...
-                </p>
+                </ParagraphText>
+                <Link to="/signup" style={{ textDecoration: "none" }}>
                 <Button style={'gradient hover'}>
                     Get Started
                     <i class="fa-solid fa-arrow-right"></i>
                 </Button>
+                </Link>
             </div>
             <img src={hero} alt="home-image" srcset="" className='home__img' />
         </div>
-        <Search />
     </section>
   )
 }
