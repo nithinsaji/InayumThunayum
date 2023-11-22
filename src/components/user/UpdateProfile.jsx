@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UserService from "../../services/user.service";
 import { Primary, Secondary } from "../UI/Button";
 import Input from "../UI/Input";
 
 const UpdateProfile = ({ setEdit }) => {
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState({});
-  const [profile, setProfile] = useState({});
+  const user = JSON.parse(localStorage.getItem("user")) || {};
+  const [profile, setProfile] = useState(JSON.parse(localStorage.getItem("profile")) || {});
+
+  const navigate = useNavigate();
 
   const getProfile = async () => {
-    let user = localStorage.getItem("user");
-    if (user != null && user != undefined) {
-      user = JSON.parse(user);
-      setUser(user);
+    if (user !== null && user !== undefined) {
       const data = await UserService.getProfileAPI(user?.id);
       setProfile({
         ...data,
@@ -20,8 +20,6 @@ const UpdateProfile = ({ setEdit }) => {
         mobile: user.mobile,
         id: user.id,
       });
-    } else {
-      setUser({});
     }
   };
 
@@ -37,9 +35,17 @@ const UpdateProfile = ({ setEdit }) => {
 
   const onSubmitHandler = async () => {
     await UserService.updateProfileAPI(profile).then((res) => {
-      console.log(res?.message);
+      if(res.status === 'success'){
+        setEdit(false)
+      }else{
+
+      }
     });
   };
+
+  var dob = new Date(profile?.dob);
+  dob.setDate(dob.getDate() + 1);
+
 
   const BasicDetailsInputs = [
     {
@@ -74,7 +80,7 @@ const UpdateProfile = ({ setEdit }) => {
         "House Name shouldn't include any special character & numbers!",
       pattern: "^[A-Za-z ]{3,16}$",
       placeholder: "MM/dd/yyyy",
-      defaultValue: profile?.dob,
+      defaultValue: dob.toISOString().split('T')[0],
       required: true,
     },
     {

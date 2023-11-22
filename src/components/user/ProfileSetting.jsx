@@ -6,20 +6,15 @@ import UpdateProfile from "./UpdateProfile";
 
 const ProfileSetting = () => {
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState({});
-  const [profile, setProfile] = useState({});
+  const user = JSON.parse(localStorage.getItem("user")) || {};
+  const [profile, setProfile] = useState(JSON.parse(localStorage.getItem("profile")) || {});
   const [edit, setEdit] = useState(false);
 
   const getProfile = async () => {
-    let user = localStorage.getItem("user");
     if (user != null && user != undefined) {
-      user = JSON.parse(user);
-      setUser(user);
       const data = await UserService.getProfileAPI(user?.id);
       setProfile(data);
-    } else {
-      setUser({});
-    }
+    } 
   };
 
   useEffect(() => {
@@ -27,6 +22,9 @@ const ProfileSetting = () => {
     getProfile();
     setLoading(false);
   }, []);
+
+  var dob = new Date(profile?.dob);
+  dob?.setDate(dob?.getDate() + 1);
 
   return (
     <>
@@ -54,7 +52,7 @@ const ProfileSetting = () => {
                   </tr>
                   <tr>
                     <td>DOB</td>
-                    <td>{profile?.dob}</td>
+                    <td>{dob?.toISOString().split('T')[0]}</td>
                   </tr>
                   <tr>
                     <td>Mother Tongue</td>
@@ -122,7 +120,7 @@ const ProfileSetting = () => {
               </div>
               </div>
             </>
-          ) : (
+          ): (
             <UpdateProfile setEdit={setEdit} />
           )}
         </div>

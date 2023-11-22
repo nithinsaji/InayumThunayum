@@ -3,6 +3,7 @@ import Card from "../UI/Card";
 import bride1 from "../../assets/bride1.jpg";
 import UserService from "../../services/user.service";
 import InterestService from "../../services/interest.service";
+import FullScreenLoading from "../UI/Loading";
 
 const UserHome = () => {
   const [loading, setLoading] = useState(true);
@@ -34,14 +35,14 @@ const UserHome = () => {
   };
 
   const getSearchResult = () => {
-    setLoading(true);
+    
     getProfile();
     let searchResult = localStorage.getItem("searchResult");
     if (searchResult != null && searchResult != undefined) {
       searchResult = JSON.parse(searchResult);
       setResult(searchResult);
     }
-    setLoading(false);
+    
   };
 
   const removeCard = (name, houseName) => {
@@ -54,6 +55,7 @@ const UserHome = () => {
   };
 
   const favorite = async (fav_id) => {
+    setLoading(true);
     let user = localStorage.getItem("user");
     let searchResult = JSON.parse(localStorage.getItem("searchResult"));
     let favoriteArr = JSON.parse(localStorage.getItem("favoriteList"));
@@ -80,9 +82,11 @@ const UserHome = () => {
         setFavoriteList({ ...favoriteList, [fav_id]: res?.added });
       });
     }
+    setLoading(false);
   };
 
   const sentInterest = async (sendId) => {
+    setLoading(true);
     let user = localStorage.getItem("user");
     if (user != null && user != undefined) {
       user = JSON.parse(user);
@@ -100,14 +104,18 @@ const UserHome = () => {
         });
       });
     }
+    setLoading(false);
   };
 
   useEffect(() => {
+    setLoading(true);
     getSearchResult();
+    setLoading(false);
   }, []);
 
   return (
     <div className="userhome__container">
+      {loading && <FullScreenLoading />}
       {!loading && result != null && result?.length != 0 ? (
         result?.map((details) => (
           <Card

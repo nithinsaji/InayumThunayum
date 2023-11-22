@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const userURL =
-  "https://script.google.com/macros/s/AKfycbw2qNKsCUvEDQnyFkaWg7_EGNluQmEVLTnSow1DPDYRIleoTFezKcCbQAYkLAIRFRu6/exec";
+  "https://script.google.com/macros/s/AKfycbyli87bHQcD1zpNAnGOReOKLaP0N1YKzE3acsaX5bxIT1SNp6ew3lgPuNeTFUVreJNU/exec";
 
 const getProfileAPI = async (id) => {
   var accessToken = JSON.parse(localStorage.getItem("accessToken"));
@@ -29,7 +29,6 @@ const getProfileAPI = async (id) => {
 };
 
 const updateProfileAPI = async (profile) => {
-  console.log(profile);
   var accessToken = JSON.parse(localStorage.getItem("accessToken"));
 
   return await fetch(userURL, {

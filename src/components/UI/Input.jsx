@@ -44,7 +44,7 @@ const Select = ({ props }) => {
     <>
       <label>{label}</label>
       <div class="select-box">
-        <select onChange={onChange} name="place">
+        <select onChange={onChange} name={inputProps.name}>
           <option hidden>Choose</option>
           {options?.map((value) => (
             <option selected = {inputProps.defaultValue === value}>{value}</option>
