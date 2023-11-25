@@ -9,9 +9,9 @@ const UpdateImage = ({ id, images }) => {
     image3: {},
   });
   const [preview, setPreview] = useState({
-    image1: 'https://drive.google.com/uc?id='+images[0]|| "",
-    image2: 'https://drive.google.com/uc?id='+images[1]|| "",
-    image3: 'https://drive.google.com/uc?id='+images[2]|| "",
+    image1: images[0] && 'https://drive.google.com/uc?id='+images[0] || "",
+    image2: images[1] && 'https://drive.google.com/uc?id='+images[1] || "",
+    image3: images[2] && 'https://drive.google.com/uc?id='+images[2] || "",
   });
 
   console.log(preview);
