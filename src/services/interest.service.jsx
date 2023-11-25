@@ -168,6 +168,10 @@ const getAllInterestListAPI = async (userId) => {
     })
       .then((res) => res.json())
       .then((result) => {
+        let val = result.interestList?.map((res) => {
+          return { [res.id]: true };
+        });
+        localStorage.setItem("interest", JSON.stringify(Object.assign({}, ...val )));
         return result.interestList;
       });
   }

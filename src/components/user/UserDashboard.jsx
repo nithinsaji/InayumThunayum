@@ -55,8 +55,8 @@ const UserDashboard = () => {
                         </Link>
                         <span className="tooltip">Setting</span>
                     </li>
-                    <li className='logout'>
-                        <i className='bx bx-log-out' onClick={logout}></i>
+                    <li className='logout' onClick={logout}>
+                        <i className='bx bx-log-out'></i>
                         <span className="links_name">Log out</span>
                     </li>
                 </ul>

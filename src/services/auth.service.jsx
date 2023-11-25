@@ -22,7 +22,6 @@ const register = async (name, number, email, password ) => {
 };
 
 const login = async (username, password) => {
-  console.log(username);
   return await fetch(auth_url, {
     redirect: "follow",
     headers: {

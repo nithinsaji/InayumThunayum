@@ -26,10 +26,11 @@ const SmallCard = ({
             {interestList[details?.id] ? "Remove" : "Send Interest"}
           </Button>
           <Button
-            style={favoriteList[details?.id] ? "glassy" : "normal"}
+            style={favoriteList[details?.id] ? "outline" : "normal"}
             onClick={() => favorite(details?.id)}
           >
-            <i class="fa-regular fa-star"></i>
+            {!favoriteList[details.id] ? <i class="fa-regular fa-star"></i>:
+                  <i class="fa-solid fa-star"></i>}
           </Button>
         </div>
       </div>

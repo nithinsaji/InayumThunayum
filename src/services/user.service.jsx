@@ -143,7 +143,6 @@ const getFavoriteListAPI = async (id) => {
           return { [res.id]: true };
         });
         localStorage.setItem("favorite", JSON.stringify(Object.assign({}, ...val )));
-        console.log(Object.assign({}, ...val ));
         return result.favoriteList;
       });
   }

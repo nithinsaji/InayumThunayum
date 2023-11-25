@@ -40,14 +40,13 @@
 
 /* glassy */
 .glassy{
-    background-color: #ffffff33;
+    background-color: #00000033;
     font-size: 12px;
     color: var(--white-color);
     padding: 5px 15px;
     font-weight: var(--font-regular);
 }
 .outline{
-    border: 1px solid black;
     background: white;
     font-size: 14px;
 }

@@ -13,7 +13,6 @@ const ProfileSetting = () => {
   const getProfile = async () => {
     if (user != null && user != undefined) {
       const data = await UserService.getProfileAPI(user?.id);
-      console.log(data);
       setProfile(data);
     } 
   };

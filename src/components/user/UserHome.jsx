@@ -18,25 +18,14 @@ const UserHome = () => {
   const location = useLocation();
 
   const getProfile = async () => {
+    // if('The token has expired'.includes(response?.message)) return <Navigate to="/signin" state={{ from: location }} replace />
     let user = localStorage.getItem("user");
     if (user != null && user != undefined) {
       user = JSON.parse(user);
       await UserService.getProfileAPI(user?.id);
       await UserService.getFavoriteListAPI(user?.id);
-      if (Object.keys(interestList).length === 0) {
-        let interest = {};
-        await InterestService.getAllInterestListAPI(user?.id).then(
-          (response) => {
-            if('The token has expired'.includes(response?.message)) return <Navigate to="/signin" state={{ from: location }} replace />
-            response.interestList !== undefined &&
-              response?.map((id) => {
-                interest[id.id] = true;
-              });
-          }
-        );
-        localStorage.setItem("interest", JSON.stringify(interest));
-        setInterestList(interest);
-      }
+      if (Object.keys(interestList).length === 0)
+        await InterestService.getAllInterestListAPI(user?.id)
     }
   };
 
@@ -47,6 +36,7 @@ const UserHome = () => {
       searchResult = JSON.parse(searchResult);
       setResult(searchResult);
     }
+    setLoading(false);
   };
 
   const removeCard = (name, houseName) => {
@@ -133,7 +123,6 @@ const UserHome = () => {
   useEffect(() => {
     setLoading(true);
     getSearchResult();
-    setLoading(false);
   }, []);
 
   return (

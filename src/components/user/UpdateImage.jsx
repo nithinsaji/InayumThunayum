@@ -14,7 +14,6 @@ const UpdateImage = ({ id, images }) => {
     image3: images && images[2] && 'https://drive.google.com/uc?id='+images[2] || "",
   });
 
-  console.log(preview);
   const onChange = (e) => {
     var file = e.target.files[0]; //the file
 

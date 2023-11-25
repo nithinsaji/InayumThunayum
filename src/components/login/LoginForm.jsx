@@ -25,7 +25,6 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     setLoading(true)
     e.preventDefault();
-    console.log(values.email + " " + values.password);
     try {
       await AuthService.login(values.email, values.password).then(
         (response) => {

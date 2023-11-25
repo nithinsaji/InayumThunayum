@@ -28,7 +28,8 @@ const Card = ({
         <div className="profile__card">
           <div className="profile__card-image">
             <img
-              src={`https://drive.google.com/uc?id=${details.images[0]}`}
+              src={details.images && details?.images[0] ? `https://drive.google.com/uc?id=${details.images[0]}` : noImage}
+              de
               alt=""
               srcset=""
               onClick={() => setCarousel(true)}
@@ -76,7 +77,8 @@ const Card = ({
                   style={favoriteList[details.id] ? "glassy" : "normal"}
                   onClick={() => favorite(details.id)}
                 >
-                  <i class="fa-regular fa-star"></i>
+                  {!favoriteList[details.id] ? <i class="fa-regular fa-star"></i>:
+                  <i class="fa-solid fa-star"></i>}
                 </Button>
               </div>
             </div>
