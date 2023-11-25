@@ -1,6 +1,6 @@
 /* button common style */
 .button{
-    display: inline-flex;
+    display: flex;
     align-items: center;
     column-gap: .25rem;
     padding: .5rem 1rem;
@@ -8,6 +8,8 @@
     font-weight: var(--font-medium);
     border: 0;
     cursor: pointer;
+    box-shadow: 1px 1px 12px 1px rgba(0,0,0,0.15);
+    gap: 5px;
 }
 .hover i{
     font-style: 1.5rem;
@@ -38,10 +40,10 @@
 
 /* glassy */
 .glassy{
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #ffffff33;
     font-size: 12px;
     color: var(--white-color);
-    padding: 2px 10px;
+    padding: 5px 15px;
     font-weight: var(--font-regular);
 }
 .outline{

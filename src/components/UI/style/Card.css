@@ -6,6 +6,7 @@
     border-radius: 5px;
     width: 100%;
     aspect-ratio: 4/5;
+    object-fit: cover;
 }
 .profile__card-content{
     position: absolute;
@@ -83,6 +84,7 @@ background: linear-gradient(0deg, rgba(2, 0, 36, .8) 0%, rgba(0, 0, 0, 0.3) 35%,
 }
 .modal{
     width: 100%;
+    height: calc(100dvh - 70px);
     z-index: 5;
     display: block;
     position: absolute;
@@ -93,6 +95,8 @@ background: linear-gradient(0deg, rgba(2, 0, 36, .8) 0%, rgba(0, 0, 0, 0.3) 35%,
 .carousel-item img {
     margin: 0 auto; /* this will align the image to center. */
     height: 70vh;
+    border-radius: 5px;
+    box-shadow: 1px 1px 12px 1px rgba(0,0,0,0.15);
     width: auto; /* for those images which don't have a width specified, but has a max-height will be auto adjusted */
   }
 
@@ -100,20 +104,24 @@ background: linear-gradient(0deg, rgba(2, 0, 36, .8) 0%, rgba(0, 0, 0, 0.3) 35%,
     position: absolute;
     z-index: 6;
     right: 0;
-    font-size: 30px;
-    padding: 5px 10px;
-    margin-right: 10px;
+    font-size: 20px;
+    padding: 5px 12px;
+    margin-top: 30px;
+    margin-right: 30px;
     cursor: pointer;
-    color: white;
+    background-color: white;
+    box-shadow: 2px 3px 10px 1px rgba(0,0,0,0.15);
+    border-radius: 50%;
   }
 .carousel{
     position: relative;
 }
   .carousel-btn{
+    cursor: pointer;
     position: absolute;
     padding: 10px 17px;
     background-color: white;
-    box-shadow: 2px 3px 10px 1px rgba(0,0,0,0.75);
+    box-shadow: 2px 3px 10px 1px rgba(0,0,0,0.15);
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);

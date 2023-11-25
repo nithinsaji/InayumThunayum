@@ -92,9 +92,28 @@ const UserHome = () => {
   const sentInterest = async (sendId) => {
     setLoading(true);
     let user = localStorage.getItem("user");
+    let searchResult = JSON.parse(localStorage.getItem("searchResult"));
+    let interestArr = JSON.parse(localStorage.getItem("interestList"));
+
     if (user != null && user != undefined) {
       user = JSON.parse(user);
       await InterestService.sentInterestAPI(user?.id, sendId).then((res) => {
+
+        const searchIndex = searchResult.findIndex(
+          (value) => value.id === sendId
+        );
+        const interestIndex = interestArr.findIndex((f) => f.id === sendId);
+
+        console.log(searchResult[searchIndex]);
+
+        if (res?.status === 'success') {
+          interestArr.push(searchResult[searchIndex]);
+          localStorage.setItem("interestList", JSON.stringify(interestArr));
+        } else {
+          interestArr.splice(interestIndex, 1);
+          localStorage.setItem("interestList", JSON.stringify(interestArr));
+        }
+
         localStorage.setItem(
           "interest",
           JSON.stringify({
@@ -133,7 +152,7 @@ const UserHome = () => {
               ></Card>
             ))
           ) : (
-            <p>Sorry we did not found any users. Please do search again.</p>
+            <p className="no-data">Sorry we did not found any users. Please do search again.</p>
           )}
         </div>
       ) : (

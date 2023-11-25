@@ -99,7 +99,7 @@ const Shortlist = () => {
           ></SmallCard>
         ))
       ) : (
-        <p>Your favorite list is empty</p>
+        <p className="no-data">Your favorite list is empty</p>
       )}</>:<FullScreenLoading />}
     </div>
   );
