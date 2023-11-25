@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import InterestService from '../../../services/interest.service';
 import UserService from '../../../services/user.service';
+import FullScreenLoading from '../../UI/Loading';
 import SmallCard from '../../UI/SmallCard';
 
 const InterestAccepted = () => {
@@ -85,7 +86,7 @@ const InterestAccepted = () => {
     }, []);
   return (
     <>
-         {!loading && result != null && result?.length != 0 ? (
+         {!loading ? <>{ result != null && result?.length != 0 ? (
         result?.map((details) => (
           <SmallCard
             details={details}
@@ -97,7 +98,7 @@ const InterestAccepted = () => {
         ))
       ) : (
         <p>Your accept list is empty</p>
-      )}
+      )}</>:<FullScreenLoading />}
     </>
   )
 }

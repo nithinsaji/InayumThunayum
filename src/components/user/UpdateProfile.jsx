@@ -80,7 +80,7 @@ const UpdateProfile = ({ setEdit }) => {
         "House Name shouldn't include any special character & numbers!",
       pattern: "^[A-Za-z ]{3,16}$",
       placeholder: "MM/dd/yyyy",
-      defaultValue: dob.toISOString().split('T')[0],
+      defaultValue: profile?.dob && dob.toISOString().split('T')[0],
       required: true,
     },
     {

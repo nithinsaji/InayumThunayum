@@ -10,7 +10,9 @@ const ProfileView = () => {
     const details = location.state
 
     const tick = <i class="fa-solid fa-circle-check"></i>
-    
+
+    var dob = new Date(details?.dob);
+    dob?.setDate(dob?.getDate() + 1);
 
     return (
         <div className={`profileview`}>
@@ -21,7 +23,7 @@ const ProfileView = () => {
             <div>
                 <div className='view__container'>
                     <div className='view__scroll-image'>
-                        <Carousel details={details} />
+                        <Carousel image={details.images} />
                     </div>
                     <div className='view__profile-details'>
                         <div className="details__conatiner">
@@ -44,7 +46,7 @@ const ProfileView = () => {
                                 </tr>
                                 <tr>
                                     <td>DOB</td>
-                                    <td>{details.dob}</td>
+                                    <td>{details?.dob && dob?.toISOString().split('T')[0]}</td>
                                     <td>{tick}</td>
                                 </tr>
                                 <tr>

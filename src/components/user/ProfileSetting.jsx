@@ -13,6 +13,7 @@ const ProfileSetting = () => {
   const getProfile = async () => {
     if (user != null && user != undefined) {
       const data = await UserService.getProfileAPI(user?.id);
+      console.log(data);
       setProfile(data);
     } 
   };
@@ -21,7 +22,7 @@ const ProfileSetting = () => {
     setLoading(true);
     getProfile();
     setLoading(false);
-  }, []);
+  }, [edit]);
 
   var dob = new Date(profile?.dob);
   dob?.setDate(dob?.getDate() + 1);
@@ -34,7 +35,7 @@ const ProfileSetting = () => {
             <>
               <Button style={'glassy'} onClick={() => setEdit(true)}>Edit</Button>
               <div className="image__conatiner">
-                <UpdateImage id={user.id} />
+                <UpdateImage id={user.id} images={profile?.images} />
               </div>
               <div className="profile_container">
               <div className="details__conatiner">
@@ -52,7 +53,7 @@ const ProfileSetting = () => {
                   </tr>
                   <tr>
                     <td>DOB</td>
-                    <td>{dob?.toISOString().split('T')[0]}</td>
+                    <td>{profile?.dob && dob?.toISOString().split('T')[0]}</td>
                   </tr>
                   <tr>
                     <td>Mother Tongue</td>

@@ -9,7 +9,10 @@
 .interest__nav a{
     position: relative;
     padding: 10px 20px;
-    border-radius: 10px 10px 0px 0;
+    border-radius: 10px;
+}
+.interest__nav a.active{
+    color: var(--second-color);
 }
 .interest__nav a.active::after{
     position: absolute;
@@ -18,7 +21,17 @@
     content: '';
     height: 2px;
     width: calc(100% - 5px);
-    background: rgb(63, 63, 63);
+    background: var(--second-color);
 }
-
+.interest_sub a.active{
+    background-color: var(--second-color);
+    color: white;
+}
+.interest_sub{
+    margin-bottom: 20px;
+}
+.interest_sub a{
+    padding: 5px 15px;
+    border-radius: 5px;
+}
 /* onyou */

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Card from "../UI/Card";
-import bride1 from "../../assets/bride1.jpg";
 import UserService from "../../services/user.service";
 import InterestService from "../../services/interest.service";
 import FullScreenLoading from "../UI/Loading";
+import { Navigate, useLocation } from "react-router-dom";
 
 const UserHome = () => {
   const [loading, setLoading] = useState(true);
@@ -15,6 +15,8 @@ const UserHome = () => {
     JSON.parse(localStorage.getItem("interest")) || {}
   );
 
+  const location = useLocation();
+
   const getProfile = async () => {
     let user = localStorage.getItem("user");
     if (user != null && user != undefined) {
@@ -23,11 +25,15 @@ const UserHome = () => {
       await UserService.getFavoriteListAPI(user?.id);
       if (Object.keys(interestList).length === 0) {
         let interest = {};
-        await InterestService.getAllInterestListAPI(user?.id).then((response) => {
-          response.interestList !== undefined && response?.map((id) => {
-            interest[id.id] = true;
-          });
-        });
+        await InterestService.getAllInterestListAPI(user?.id).then(
+          (response) => {
+            if('The token has expired'.includes(response?.message)) return <Navigate to="/signin" state={{ from: location }} replace />
+            response.interestList !== undefined &&
+              response?.map((id) => {
+                interest[id.id] = true;
+              });
+          }
+        );
         localStorage.setItem("interest", JSON.stringify(interest));
         setInterestList(interest);
       }
@@ -35,14 +41,12 @@ const UserHome = () => {
   };
 
   const getSearchResult = () => {
-    
     getProfile();
     let searchResult = localStorage.getItem("searchResult");
     if (searchResult != null && searchResult != undefined) {
       searchResult = JSON.parse(searchResult);
       setResult(searchResult);
     }
-    
   };
 
   const removeCard = (name, houseName) => {
@@ -114,24 +118,30 @@ const UserHome = () => {
   }, []);
 
   return (
-    <div className="userhome__container">
-      {loading && <FullScreenLoading />}
-      {!loading && result != null && result?.length != 0 ? (
-        result?.map((details) => (
-          <Card
-            src={bride1}
-            details={details}
-            remove={removeCard}
-            favorite={favorite}
-            favoriteList={favoriteList}
-            interestList={interestList}
-            sentInterest={sentInterest}
-          ></Card>
-        ))
+    <>
+      {!loading ? (
+        <div className="userhome__container">
+          {result != null && result?.length != 0 ? (
+            result?.map((details) => (
+              <Card
+                details={details}
+                remove={removeCard}
+                favorite={favorite}
+                favoriteList={favoriteList}
+                interestList={interestList}
+                sentInterest={sentInterest}
+              ></Card>
+            ))
+          ) : (
+            <p>Sorry we did not found any users. Please do search again.</p>
+          )}
+        </div>
       ) : (
-        <p>Sorry we did not found any users. Please do search again.</p>
+        <div className="fs-container">
+          <FullScreenLoading />
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

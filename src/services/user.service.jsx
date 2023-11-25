@@ -1,7 +1,6 @@
-import { useState } from "react";
 
 const userURL =
-  "https://script.google.com/macros/s/AKfycbyli87bHQcD1zpNAnGOReOKLaP0N1YKzE3acsaX5bxIT1SNp6ew3lgPuNeTFUVreJNU/exec";
+  "https://script.google.com/macros/s/AKfycbzddcxdYFf9eArC8BHm6n72FtMQf1fn4SnKAXyl01T5Ilkc8qwiu-RxSPSBw4fZy2EI/exec";
 
 const getProfileAPI = async (id) => {
   var accessToken = JSON.parse(localStorage.getItem("accessToken"));
@@ -85,7 +84,6 @@ const updateImageAPI = async (values, id) => {
     method: "POST",
     body: JSON.stringify({
       Authorization: `${accessToken}`,
-      id: id,
       image1: values.image1,
       image2: values.image2,
       image3: values.image3,
@@ -110,7 +108,6 @@ const favoriteAPI = async (id, fav_id) => {
     method: "POST",
     body: JSON.stringify({
       Authorization: `${accessToken}`,
-      id: id,
       fav_id: fav_id,
       fname: "favorite",
     }),
@@ -133,7 +130,6 @@ const getFavoriteListAPI = async (id) => {
       method: "POST",
       body: JSON.stringify({
         Authorization: `${accessToken}`,
-        userId: id,
         fname: "getFavoriteList",
       }),
     })

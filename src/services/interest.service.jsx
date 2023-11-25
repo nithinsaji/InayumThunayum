@@ -1,5 +1,5 @@
 const interestURL =
-  "https://script.google.com/macros/s/AKfycbwPSC3y8MUSmXP6EpQmv2gwatDdBHDvvoUEWP-vil_jRXxFzD3oDgXaBdhZF0ZzpNV1/exec";
+  "https://script.google.com/macros/s/AKfycbzddcxdYFf9eArC8BHm6n72FtMQf1fn4SnKAXyl01T5Ilkc8qwiu-RxSPSBw4fZy2EI/exec";
 
 const sentInterestAPI = async (userId, sentId) => {
   var accessToken = JSON.parse(localStorage.getItem("accessToken"));
@@ -12,7 +12,6 @@ const sentInterestAPI = async (userId, sentId) => {
     method: "POST",
     body: JSON.stringify({
       Authorization: `${accessToken}`,
-      userId: userId,
       sentId: sentId,
       fname: "sentInterest",
     }),
@@ -34,7 +33,6 @@ const getInterestedReceivedAPI = async (userId) => {
       method: "POST",
       body: JSON.stringify({
         Authorization: `${accessToken}`,
-        userId: userId,
         fname: "getInterestedReceived",
       }),
     })
@@ -60,7 +58,6 @@ const getAcceptInterestAPI = async (userId) => {
       method: "POST",
       body: JSON.stringify({
         Authorization: `${accessToken}`,
-        userId: userId,
         fname: "getAcceptInterest",
       }),
     })
@@ -88,7 +85,6 @@ const getRejectInterestAPI = async (userId) => {
       method: "POST",
       body: JSON.stringify({
         Authorization: `${accessToken}`,
-        userId: userId,
         fname: "getRejectInterest",
       }),
     })
@@ -116,7 +112,6 @@ const getInterestListAPI = async (userId) => {
       method: "POST",
       body: JSON.stringify({
         Authorization: `${accessToken}`,
-        userId: userId,
         fname: "getInterestList",
       }),
     })
@@ -143,7 +138,6 @@ const getApprovedInterestAPI = async (userId) => {
       method: "POST",
       body: JSON.stringify({
         Authorization: `${accessToken}`,
-        userId: userId,
         fname: "getApprovedInterest",
       }),
     })
@@ -169,7 +163,6 @@ const getAllInterestListAPI = async (userId) => {
       method: "POST",
       body: JSON.stringify({
         Authorization: `${accessToken}`,
-        userId: userId,
         fname: "getAllInterestList",
       }),
     })

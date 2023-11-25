@@ -1,10 +1,9 @@
 
-const register_url = 'https://script.google.com/macros/s/AKfycbwi1kUm0BeFemo-atahSr1Pfv8GEli5xe7leSzU6QHhR0mnGa6yYcSvwWp5yMjYJcYpmw/exec';
-const login_url = "https://script.google.com/macros/s/AKfycbzA64KjwzfT6y2fGCi9hr1MgXU5G74B6_O1eKoGE4-W6rVWcNyrBaTqkdU_SA-F3xaD_A/exec";
+const auth_url = 'https://script.google.com/macros/s/AKfycbx-NznFcWXbGCm7RWbrGdVcyiUy35QQj91a4xfSv5125YQTFTqlJV2vzFRBW1ujqMVXlQ/exec';
 
 const register = async (name, number, email, password ) => {
 
-  return await fetch(register_url, {
+  return await fetch(auth_url, {
     redirect: "follow",
     headers: {
       'Accept': 'application/json, text/plain, */*'
@@ -14,7 +13,8 @@ const register = async (name, number, email, password ) => {
       "name": name,
       "number": number,
       "email": email,
-      "password": password
+      "password": password,
+      fname : 'register'
     })
   })
     .then((res) => res.json())
@@ -23,7 +23,7 @@ const register = async (name, number, email, password ) => {
 
 const login = async (username, password) => {
   console.log(username);
-  return await fetch(login_url, {
+  return await fetch(auth_url, {
     redirect: "follow",
     headers: {
       'Accept': 'application/json, text/plain, */*'
@@ -31,7 +31,8 @@ const login = async (username, password) => {
     method: "POST",
     body: JSON.stringify({
       "email": username,
-      "password": password
+      "password": password,
+      fname : 'login'
     })
   })
     .then((res) => res.json())

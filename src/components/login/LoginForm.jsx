@@ -38,9 +38,7 @@ const LoginForm = () => {
             password: ""
           })
           setLoading(false)
-          setTimeout(() => {
             navigate(location.state?.from?.pathname || role === 'Admin' ? "/AdminDashboard" : "/Dashboard", { replace: true });
-          }, 1000);
         }
       )
     } catch (err) {
@@ -54,6 +52,8 @@ const LoginForm = () => {
 
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(state => !state);
+
+  const text = 'This feature is currently unavailable. Did you forgot your password you can contact our support team and get password.';
 
   return (
     <section className="app__container">
@@ -77,7 +77,7 @@ const LoginForm = () => {
           </div>
         </div>
       </div>
-      {showModal && <Modal updateModalState={toggleModal} />}
+      {showModal && <Modal updateModalState={toggleModal} text={text}/>}
     </section>
   )
 }

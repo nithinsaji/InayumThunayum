@@ -22,6 +22,11 @@
     justify-self: center;
 }
 
+@media screen and (min-width: 1024px) {
+    section{
+        padding: 1.5rem;
+    }
+}
 @media screen and (max-width: 1024px) {
     section{
         max-width: 1156px;
@@ -32,6 +37,7 @@
     section{
         max-width: 960px;
         width: 100%;
+        padding: 0;
     }
     .home__img{
         width: 250px;
@@ -40,7 +46,8 @@
 @media screen and (max-width: 426px) {
     section{
         width: 100%;
-        padding-top: 20px;
+        padding: 0;
+        
     }
     .home__img{
         width: 200px;

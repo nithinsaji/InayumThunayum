@@ -1,4 +1,5 @@
 .shortlist{
+    position: relative;
     display: grid;
     place-items: center;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));

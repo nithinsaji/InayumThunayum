@@ -97,6 +97,7 @@
     flex-wrap: wrap;
     gap: 3%;
     padding: 0 20px 0 40px;
+    width: 100%;
 }
 .details__conatiner{
     flex: 30%;

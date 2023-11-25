@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import UserService from '../../services/user.service';
+import Modal from '../UI/Modal';
 import './style/Search.css'
 
 const Search = () => {
@@ -17,18 +18,15 @@ const Search = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  var profile = JSON.parse(localStorage.getItem('profile'));
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    var profile = localStorage.getItem('profile');
-    const gender = JSON.parse(profile);
-    console.log(gender);
-    const genders = gender?.gender == 'male' ? 'female':'male';
-     console.log(genders);
+    const gender = profile?.gender == 'male' ? 'female':'male';
     setLoading(true)
     
-    await UserService.searchAPI(genders, values).then(
+    await UserService.searchAPI(gender, values).then(
       (response) => {
-        console.log(response)
         setLoading(false)
           navigate('/Dashboard/');
       }
@@ -40,8 +38,10 @@ const Search = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  return (
-    <section class="searchcontainer">
+  const text = 'Please update your profile before going to search.'
+
+  return (<>
+    {profile?.gender ? <section class="searchcontainer">
       <header>Search Your Partner</header>
       <form class="form" onSubmit={handleSubmit}> 
 
@@ -85,7 +85,9 @@ const Search = () => {
             </div>
         <button>Search</button>
       </form>
-    </section>
+    </section>:
+    <Modal text={text} updateModalState={() => navigate('/Dashboard/settings',{replace:true})}/>
+    }</>
   )
 }
 

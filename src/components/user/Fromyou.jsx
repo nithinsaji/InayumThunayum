@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 const Fromyou = () => {
   return (
     <>
-      <div className="interest__nav">
+      <div className="interest_sub">
         <NavLink to={""} end>
           Requested
         </NavLink>

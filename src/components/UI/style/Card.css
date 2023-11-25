@@ -72,7 +72,6 @@ background: linear-gradient(0deg, rgba(2, 0, 36, .8) 0%, rgba(0, 0, 0, 0.3) 35%,
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(69,49,49);
 }
 .carousel{
     height: 100%;
@@ -80,7 +79,6 @@ background: linear-gradient(0deg, rgba(2, 0, 36, .8) 0%, rgba(0, 0, 0, 0.3) 35%,
 }
 .carousel-item{
     margin-right: 0 !important;
-    width: 80%;
     object-fit: contain;
 }
 .modal{
@@ -88,13 +86,13 @@ background: linear-gradient(0deg, rgba(2, 0, 36, .8) 0%, rgba(0, 0, 0, 0.3) 35%,
     z-index: 5;
     display: block;
     position: absolute;
-    background: black;
     top: 0;
     left: 0;
 }
 
 .carousel-item img {
     margin: 0 auto; /* this will align the image to center. */
+    height: 70vh;
     width: auto; /* for those images which don't have a width specified, but has a max-height will be auto adjusted */
   }
 
@@ -107,4 +105,26 @@ background: linear-gradient(0deg, rgba(2, 0, 36, .8) 0%, rgba(0, 0, 0, 0.3) 35%,
     margin-right: 10px;
     cursor: pointer;
     color: white;
+  }
+.carousel{
+    position: relative;
+}
+  .carousel-btn{
+    position: absolute;
+    padding: 10px 17px;
+    background-color: white;
+    box-shadow: 2px 3px 10px 1px rgba(0,0,0,0.75);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .carousel-left{
+    left: 10px;
+  }
+  .carousel-right{
+    right: 10px;
+  }
+  .carousel-inner{
+    width: 100%;
+    margin: 0;
   }

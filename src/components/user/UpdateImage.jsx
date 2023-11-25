@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import UserService from "../../services/user.service";
 import Button from "../UI/Button";
 
-const UpdateImage = ({ id }) => {
+const UpdateImage = ({ id, images }) => {
   const [values, setValues] = useState({
     image1: {},
     image2: {},
     image3: {},
   });
   const [preview, setPreview] = useState({
-    image1: "",
-    image2: "",
-    image3: "",
+    image1: 'https://drive.google.com/uc?id='+images[0]|| "",
+    image2: 'https://drive.google.com/uc?id='+images[1]|| "",
+    image3: 'https://drive.google.com/uc?id='+images[2]|| "",
   });
 
+  console.log(preview);
   const onChange = (e) => {
     var file = e.target.files[0]; //the file
 

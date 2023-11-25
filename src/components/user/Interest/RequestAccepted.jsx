@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useCallback } from 'react';
 import InterestService from '../../../services/interest.service';
 import UserService from '../../../services/user.service';
+import FullScreenLoading from '../../UI/Loading';
 import SmallCard from '../../UI/SmallCard';
 
 const RequestAccepted = () => {
@@ -86,7 +87,7 @@ const RequestAccepted = () => {
     }, []);
   return (
     <>
-         {!loading && result != null && result?.length != 0 ? (
+        {!loading ? <>{ result != null && result?.length != 0 ? (
         result?.map((details) => (
           <SmallCard
             details={details}
@@ -98,7 +99,7 @@ const RequestAccepted = () => {
         ))
       ) : (
         <p>You don't have any request</p>
-      )}
+      )}</>:<FullScreenLoading />}
     </>
   )
 }

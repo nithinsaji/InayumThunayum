@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InterestService from "../../services/interest.service";
 import UserService from "../../services/user.service";
+import FullScreenLoading from "../UI/Loading";
 import SmallCard from "../UI/SmallCard";
 import "./style/Shortlist.css";
 
@@ -87,7 +88,7 @@ const Shortlist = () => {
 
   return (
     <div className="shortlist">
-      {!loading && result != null && result?.length != 0 ? (
+      {!loading ? <>{result != null && result?.length != 0 ? (
         result?.map((details) => (
           <SmallCard
             details={details}
@@ -99,7 +100,7 @@ const Shortlist = () => {
         ))
       ) : (
         <p>Your favorite list is empty</p>
-      )}
+      )}</>:<FullScreenLoading />}
     </div>
   );
 };
