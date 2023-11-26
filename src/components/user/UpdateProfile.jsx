@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import UserService from "../../services/user.service";
 import { Primary, Secondary } from "../UI/Button";
 import Input from "../UI/Input";
+import FullScreenLoading from "../UI/Loading";
 
 const UpdateProfile = ({ setEdit }) => {
   const [loading, setLoading] = useState(true);
@@ -34,12 +36,15 @@ const UpdateProfile = ({ setEdit }) => {
   };
 
   const onSubmitHandler = async () => {
+    setLoading(true)
     await UserService.updateProfileAPI(profile).then((res) => {
       if(res.status === 'success'){
+        toast.success(res.message)
         setEdit(false)
       }else{
-
+        toast.error(res.message)
       }
+      setLoading(false)
     });
   };
 
@@ -184,7 +189,7 @@ const UpdateProfile = ({ setEdit }) => {
       name: "ocupation",
       type: "text",
       label: "Occupation",
-      placeholder: "Enter your Age",
+      placeholder: "Enter your Job",
       defaultValue: profile?.ocupation,
     },
     {
@@ -207,7 +212,7 @@ const UpdateProfile = ({ setEdit }) => {
 
   return (
     <>
-      {!loading && (
+      {!loading ? (
         <>
           <div className="details__conatiner form__container">
             <h2 className="view__title">
@@ -271,7 +276,9 @@ const UpdateProfile = ({ setEdit }) => {
             <Primary onClick={onSubmitHandler}>Update</Primary>
           </div>
         </>
-      )}
+      ):<div className="fs-container">
+      <FullScreenLoading />
+    </div>}
     </>
   );
 };

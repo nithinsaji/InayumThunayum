@@ -201,7 +201,7 @@
   width: calc(100% - 250px);
 }
 
-@media (max-width: 426px) {
+@media (max-width: 450px) {
   .sidebar li .tooltip{
     display: none;
   }

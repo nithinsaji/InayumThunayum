@@ -239,9 +239,18 @@ img {
   .list__container{
     grid-template-columns: repeat(2,400px);
     align-items: center;
-    gap: 0;
+    gap: 100px;
   }
   .home__title{
     margin: 0 0 1.25rem;
+  }
+}
+@media screen and (max-width: 1024px){
+  .container{
+    margin-inline: 0;
+}
+.home__container,
+  .list__container{
+    gap: 0;
   }
 }

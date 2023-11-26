@@ -18,7 +18,7 @@
     color: #505256;
     margin-bottom: 40px;
 }
-@media screen and (max-width: 426px) {
+@media screen and (max-width: 450px) {
     .titleText{
         margin-bottom: 8px;
     }

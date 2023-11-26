@@ -24,8 +24,7 @@ const UserHome = () => {
       user = JSON.parse(user);
       await UserService.getProfileAPI(user?.id);
       await UserService.getFavoriteListAPI(user?.id);
-      if (Object.keys(interestList).length === 0)
-        await InterestService.getAllInterestListAPI(user?.id)
+      await InterestService.getAllInterestListAPI(user?.id).then(()=> setLoading(false))
     }
   };
 
@@ -36,14 +35,12 @@ const UserHome = () => {
       searchResult = JSON.parse(searchResult);
       setResult(searchResult);
     }
-    setLoading(false);
   };
 
   const removeCard = (name, houseName) => {
     const cards = result.filter(
       (s) => s.name != name && s.house_name != houseName
     );
-    console.log(cards);
     setResult(cards);
     localStorage.setItem("searchResult", JSON.stringify(cards));
   };

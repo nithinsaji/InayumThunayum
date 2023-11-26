@@ -11,12 +11,8 @@ const RequestAccepted = () => {
     const [favoriteList, setFavoriteList] = useState(
       JSON.parse(localStorage.getItem("favorite")) || {}
     );
-    const [interestList, setInterestList] = useState(
-      JSON.parse(localStorage.getItem("interest")) || {}
-    );
   
     const getApprovedInterest = useCallback(async() => {
-      console.log('getApprovedInterest');
       setLoading(true);
       let user = localStorage.getItem("user");
       if (user != null && user != undefined) {
@@ -61,26 +57,10 @@ const RequestAccepted = () => {
         });
       }
     };
-  
-    const sentInterest = async (sendId) => {
-      let user = localStorage.getItem("user");
-      if (user != null && user != undefined) {
-        user = JSON.parse(user);
-        await InterestService.sentInterestAPI(user?.id, sendId).then((res) => {
-          localStorage.setItem(
-            "interest",
-            JSON.stringify({
-              ...interestList,
-              [sendId]: res.status == "success" ? true : false,
-            })
-          );
-          setInterestList({
-            ...interestList,
-            [sendId]: res.status == "success" ? true : false,
-          });
-        });
-      }
-    };
+
+    const callNow = () =>{
+      console.log("Call Now!");
+    }
   
     useEffect(() => {
       getApprovedInterest();
@@ -93,8 +73,7 @@ const RequestAccepted = () => {
             details={details}
             favorite={favorite}
             favoriteList={favoriteList}
-            interestList={interestList}
-            sentInterest={sentInterest}
+            callNow={callNow}
           ></SmallCard>
         ))
       ) : (

@@ -1,5 +1,5 @@
 const interestURL =
-  "https://script.google.com/macros/s/AKfycbzddcxdYFf9eArC8BHm6n72FtMQf1fn4SnKAXyl01T5Ilkc8qwiu-RxSPSBw4fZy2EI/exec";
+  "https://script.google.com/macros/s/AKfycby-TxjG2WcbydH-qc6kHWALV1tWoWx18c3AYeTQPva8oeQNT8L20C8Xp9b-Pg-xj4xH/exec";
 
 const sentInterestAPI = async (userId, sentId) => {
   var accessToken = JSON.parse(localStorage.getItem("accessToken"));
@@ -14,6 +14,48 @@ const sentInterestAPI = async (userId, sentId) => {
       Authorization: `${accessToken}`,
       sentId: sentId,
       fname: "sentInterest",
+    }),
+  })
+    .then((res) => res.json())
+    .then((result) => {
+      return result;
+    });
+};
+
+const acceptInterestAPI = async (acceptId) => {
+  var accessToken = JSON.parse(localStorage.getItem("accessToken"));
+
+  return await fetch(interestURL, {
+    redirect: "follow",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      Authorization: `${accessToken}`,
+      acceptId: acceptId,
+      fname: "acceptInterest",
+    }),
+  })
+    .then((res) => res.json())
+    .then((result) => {
+      return result;
+    });
+};
+
+const rejectInterestAPI = async (acceptId) => {
+  var accessToken = JSON.parse(localStorage.getItem("accessToken"));
+
+  return await fetch(interestURL, {
+    redirect: "follow",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      Authorization: `${accessToken}`,
+      acceptId: acceptId,
+      fname: "rejectInterest",
     }),
   })
     .then((res) => res.json())
@@ -153,8 +195,9 @@ const getApprovedInterestAPI = async (userId) => {
 
 const getAllInterestListAPI = async (userId) => {
   var accessToken = JSON.parse(localStorage.getItem("accessToken"));
-  var interest = JSON.parse(localStorage.getItem("interest"));
-  if (interest == null) {
+  var interest = JSON.parse(localStorage.getItem("interest")) || {};
+  
+  if (Object.keys(interest).length === 0){
     return await fetch(interestURL, {
       redirect: "follow",
       headers: {
@@ -179,6 +222,8 @@ const getAllInterestListAPI = async (userId) => {
 };
 const InterestService = {
   sentInterestAPI,
+  acceptInterestAPI,
+  rejectInterestAPI,
   getInterestedReceivedAPI,
   getAcceptInterestAPI,
   getRejectInterestAPI,

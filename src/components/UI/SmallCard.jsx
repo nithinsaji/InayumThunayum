@@ -10,6 +10,11 @@ const SmallCard = ({
   favoriteList,
   interestList,
   sentInterest,
+  acceptInterest,
+  rejectInterest,
+  callNow,
+  accepted,
+  rejected
 }) => {
   return (
     <div className="sm-container">
@@ -21,17 +26,28 @@ const SmallCard = ({
       <div className="sm-details">
         <span>{details?.name}</span>
         <div className="sm-btn">
-          <Button style={"normal"} onClick={() => sentInterest(details?.id)}>
+          {sentInterest && <Button style={"normal"} onClick={() => sentInterest(details?.id)}>
             <i class="fa-regular fa-heart"></i>
             {interestList[details?.id] ? "Remove" : "Send Interest"}
-          </Button>
-          <Button
+          </Button>}
+         { callNow && <Button style={"normal"} onClick={() => callNow()}>
+                  <i class="fa-solid fa-phone"></i>Call Now
+                </Button>}
+          {favoriteList && <Button
             style={favoriteList[details?.id] ? "outline" : "normal"}
             onClick={() => favorite(details?.id)}
           >
             {!favoriteList[details.id] ? <i class="fa-regular fa-star"></i>:
                   <i class="fa-solid fa-star"></i>}
-          </Button>
+          </Button>}
+          {acceptInterest && <Button style={"normal"} onClick={() => acceptInterest(details?.id)}>
+            <i class="fa-regular fa-heart"></i>
+            {accepted ? "Remove" : "Accept"}
+          </Button>}
+          {rejectInterest && <Button style={"normal"} onClick={() => rejectInterest(details?.id)}>
+            <i class="fa-regular fa-heart"></i>
+            {rejected ? "Remove" : "Reject"}
+          </Button>}
         </div>
       </div>
     </div>
