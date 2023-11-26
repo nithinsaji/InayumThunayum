@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import UserService from "../../services/user.service";
+import Back from "../UI/Back";
 import Button from "../UI/Button";
 
 const UpdateImage = ({ id, images }) => {
@@ -46,6 +47,8 @@ const UpdateImage = ({ id, images }) => {
     UserService.updateImageAPI(values, id);
   };
   return (
+    <div className="image__conatiner">
+      <Back title={'Upload Images'}/>
     <div className="image_wrapper">
       <form onSubmit={uploadImage}>
         <div className="image_container">
@@ -77,6 +80,7 @@ const UpdateImage = ({ id, images }) => {
         </div>
         <Button style={'glassy'}>Upload Image</Button>
       </form>
+    </div>
     </div>
   );
 };

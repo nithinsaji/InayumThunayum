@@ -1,0 +1,17 @@
+.setting-heading h1{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.setting-items a{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.setting-items a i{
+    font-size: 20px;
+    padding-right: 10px;
+}
+.setting-items a h1{
+    margin-bottom: 0;
+}

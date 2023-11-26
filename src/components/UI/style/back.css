@@ -1,0 +1,17 @@
+.back{
+    display: flex;
+    align-items: center;
+    max-width: 200px;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+@media screen and (max-width: 450px) {
+    .back{
+        max-width: 50%;
+    }
+    .back .back-title{
+        transform: translateX(50%);
+        font-size: 18px;
+    }
+}

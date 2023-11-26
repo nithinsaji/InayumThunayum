@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UserService from "../../services/user.service";
+import Back from "../UI/Back";
 import Button from "../UI/Button";
 import UpdateImage from "./UpdateImage";
 import UpdateProfile from "./UpdateProfile";
@@ -28,14 +29,12 @@ const ProfileSetting = () => {
 
   return (
     <>
+    <Back title={'Profile'}/>
       {!loading && (
         <div className="view__profile-details">
           {!edit ? (
             <>
-              <Button style={'glassy'} onClick={() => setEdit(true)}>Edit</Button>
-              <div className="image__conatiner">
-                <UpdateImage id={user.id} images={profile?.images} />
-              </div>
+            <Button style={'outline'} onClick={() => setEdit(true)}>Edit</Button>
               <div className="profile_container">
               <div className="details__conatiner">
                 <h2 className="view__title">

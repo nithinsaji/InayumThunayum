@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./components/admin/Dashboard";
 import GetNumber from "./components/admin/GetNumber";
@@ -8,6 +8,7 @@ import RequiredAuth from "./components/common/ReqiredAuth";
 import LoginForm from "./components/login/LoginForm";
 import SignUpForm from "./components/login/SignUpForm";
 import Status from "./components/login/Status";
+import DeleteAccount from "./components/user/DeleteAccount";
 import Fromyou from "./components/user/Fromyou";
 import Interest from "./components/user/Interest";
 import InterestAccepted from "./components/user/Interest/InterestAccepted";
@@ -16,10 +17,13 @@ import InterestRejected from "./components/user/Interest/InterestRejected";
 import RequestAccepted from "./components/user/Interest/RequestAccepted";
 import RequestSend from "./components/user/Interest/RequestSend";
 import Onyou from "./components/user/Onyou";
+import Password from "./components/user/Password";
 import ProfileSetting from "./components/user/ProfileSetting";
 import ProfileView from "./components/user/ProfileView";
 import Search from "./components/user/Search";
+import Settings from "./components/user/Settings";
 import Shortlist from "./components/user/Shortlist";
+import UpdateImage from "./components/user/UpdateImage";
 import UserDashboard from "./components/user/UserDashboard";
 import UserHome from "./components/user/UserHome";
 import Common from "./pages/Common";
@@ -53,7 +57,7 @@ function App() {
             <Route path="shortlist" element={<Shortlist />} exact />
             <Route path="profileview" element={<ProfileView />} exact />
             <Route path="interest" element={<Interest />} exact>
-            <Route path="fromyou" element={<Fromyou />} exact>
+              <Route path="fromyou" element={<Fromyou />} exact>
                 <Route path="" element={<RequestSend />} exact />
                 <Route path="accepted" element={<RequestAccepted />} exact />
               </Route>
@@ -63,7 +67,21 @@ function App() {
                 <Route path="rejected" element={<InterestRejected />} exact />
               </Route>
             </Route>
-            <Route path="settings" element={<ProfileSetting />} exact />
+            <Route path="settings" element={<Outlet />} exact>
+            <Route path="" element={<Settings />} exact />
+              <Route path="profile" element={<ProfileSetting />} exact />
+              <Route path="images" element={<UpdateImage />} exact />
+              <Route
+                path="resetpassword"
+                element={<Password />}
+                exact
+              />
+              <Route
+                path="deleteaccount"
+                element={<DeleteAccount />}
+                exact
+              />
+            </Route>
           </Route>
         </Route>
 
