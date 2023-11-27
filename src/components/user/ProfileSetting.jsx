@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import UserService from "../../services/user.service";
 import Back from "../UI/Back";
 import Button from "../UI/Button";
-import UpdateImage from "./UpdateImage";
 import UpdateProfile from "./UpdateProfile";
 
 const ProfileSetting = () => {

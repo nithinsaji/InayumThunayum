@@ -1,0 +1,33 @@
+.image_container{
+    position: relative;
+    height: 250px;
+}
+.image_container input{
+    display: none;
+}
+.image_container label,
+.image_container .preview_container,
+.image_container .image-choose{
+    position: absolute;
+    width: 100%;
+    height: 250px;
+}
+.image_container .image-choose{
+    z-index: 1;
+}
+.image_container label{
+    z-index: 2;
+    color: blue;
+}
+.imageCropper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100dvh;
+}
+.imageCropper button{
+    position: absolute;
+    
+}

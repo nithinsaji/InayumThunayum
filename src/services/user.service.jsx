@@ -73,7 +73,7 @@ const searchAPI = async (gender, search) => {
     });
 };
 
-const updateImageAPI = async (values, id) => {
+const updateImageAPI = async (values) => {
   var accessToken = JSON.parse(localStorage.getItem("accessToken"));
 
   return await fetch(userURL, {
