@@ -54,3 +54,10 @@ input::placeholder{
     color: rgb(167, 167, 167);
     font-size: 12px;
 }
+.input__box i{
+    position: absolute;
+    top: 20px;
+    transform: translateY(-50%);
+    font-size: large;
+    right: 10px;
+}

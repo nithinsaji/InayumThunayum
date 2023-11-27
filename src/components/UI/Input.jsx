@@ -3,10 +3,22 @@ import "./style/Input.css";
 
 const Input = (props) => {
   const [focused, setFocused] = useState(false);
-  const { label, errorMessage, onChange, placeholder, id, ...inputProps } =
-    props;
+  const [show, setShow] = useState(false);
+  const {
+    label,
+    errorMessage,
+    onChange,
+    placeholder,
+    id,
+    type,
+    ...inputProps
+  } = props;
   const handleFocus = (e) => {
     setFocused(true);
+  };
+
+  const showPassword = () => {
+    setShow(!show);
   };
 
   return (
@@ -18,6 +30,7 @@ const Input = (props) => {
           </label>
           <input
             {...inputProps}
+            type={show ? "text" : type}
             onChange={onChange}
             onBlur={handleFocus}
             placeholder={placeholder}
@@ -26,7 +39,14 @@ const Input = (props) => {
             }
             focused={focused.toString()}
           />
-          {inputProps?.type === "radio" && inputProps?.value}
+          {(inputProps?.name === "password" ||
+            inputProps.name === "confirmPassword") &&
+            (!show ? (
+              <i class="fa-regular fa-eye" onClick={showPassword}></i>
+            ) : (
+              <i class="fa-regular fa-eye-slash" onClick={showPassword}></i>
+            ))}
+          {type && type === "radio" && inputProps?.value}
           <span className="error">{errorMessage}</span>
         </>
       ) : (
@@ -47,7 +67,9 @@ const Select = ({ props }) => {
         <select onChange={onChange} name={inputProps.name}>
           <option hidden>Choose</option>
           {options?.map((value) => (
-            <option selected = {inputProps.defaultValue === value}>{value}</option>
+            <option selected={inputProps.defaultValue === value}>
+              {value}
+            </option>
           ))}
         </select>
       </div>

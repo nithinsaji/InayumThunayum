@@ -1,29 +1,58 @@
 import React, { useState } from "react";
+import { toast } from "sonner";
 import UserService from "../../services/user.service";
 import Back from "../UI/Back";
 import Button from "../UI/Button";
 import ImageCropper from "../UI/ImageCropper";
-import './style/image.css'
+import "./style/image.css";
 
 const UpdateImage = () => {
-  const [profile, setProfile] = useState(JSON.parse(localStorage.getItem("profile")) || {});
-  const [localImage, setLocalImage] = useState('')
-  const [localName, setLocalName] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [profile, setProfile] = useState(
+    JSON.parse(localStorage.getItem("profile")) || {}
+  );
+  const [localImage, setLocalImage] = useState("");
+  const [localName, setLocalName] = useState("");
   const [values, setValues] = useState({
-    image1: {},
-    image2: {},
-    image3: {},
+    image1: {
+      data: "",
+      name: Date.now(),
+      type: "image/png",
+      work: "initial",
+    },
+    image2: {
+      data: "",
+      name: Date.now(),
+      type: "image/png",
+      work: "initial",
+    },
+    image3: {
+      data: "",
+      name: Date.now(),
+      type: "image/png",
+      work: "initial",
+    },
   });
   const [preview, setPreview] = useState({
-    image1: profile?.images && profile?.images[0] && 'https://drive.google.com/uc?id='+profile.images[0] || "",
-    image2: profile?.images && profile?.images[1] && 'https://drive.google.com/uc?id='+profile.images[1] || "",
-    image3: profile?.images && profile?.images[2] && 'https://drive.google.com/uc?id='+profile.images[2] || "",
+    image1:
+      profile?.images?.image1 &&
+      ("https://drive.google.com/uc?id=" + profile?.images?.image1 || ""),
+    image2:
+      profile?.images?.image2 &&
+      ("https://drive.google.com/uc?id=" + profile?.images?.image2 || ""),
+    image3:
+      profile?.images?.image3 &&
+      ("https://drive.google.com/uc?id=" + profile?.images?.image3 || ""),
   });
 
   const onChange = (e) => {
     var file = e.target.files[0]; //the file
     if (file != undefined) {
-      setLocalImage(URL.createObjectURL(e.target.files[0]))
+      if (file.size <= 2097152) {
+        setLocalImage(URL.createObjectURL(e.target.files[0]));
+      } else {
+        toast.error("You cannot upload more than 2MB file");
+      }
 
       // setPreview({
       //   ...preview,
@@ -33,7 +62,7 @@ const UpdateImage = () => {
       // reader.readAsDataURL(e.target.files[0]); //start conversion...
       // reader.onload = function () {
       //   //.. once finished..
-      //   var rawLog = reader.result.split(",")[1]; //extract only thee file data part 
+      //   var rawLog = reader.result.split(",")[1]; //extract only thee file data part
       //   setValues({
       //     ...values,
       //     [e.target.name]: {
@@ -48,42 +77,90 @@ const UpdateImage = () => {
     }
   };
   const uploadImage = (e) => {
-    e.preventDefault();
-    UserService.updateImageAPI(values);
+    setLoading(true)
+    UserService.updateImageAPI(values).then(() => setLoading(false));
   };
 
-  const onCrop = (imageRaw, imageBlob, fileName) =>{
-    setPreview({ ...preview, [fileName] : URL.createObjectURL(imageBlob) });
+  const onCrop = (imageRaw, imageBlob, fileName) => {
+    setPreview({ ...preview, [fileName]: URL.createObjectURL(imageBlob) });
     setValues({
-          ...values,
-          [fileName]: {
-            data: imageRaw.split(",")[1],
-            name: Date.now(),
-            type: "image/png",
-          },
-        });
-  }
+      ...values,
+      [fileName]: {
+        data: imageRaw.split(",")[1],
+        name: Date.now(),
+        type: "image/png",
+        work: "upload",
+      },
+    });
+  };
 
-  const confirmCrop = () =>{
-    console.log(values);
-    setLocalImage("")
-  }
+  const confirmCrop = () => {
+    setLocalImage("");
+  };
+
+  const onDelSelected = (e, name) => {
+    e.preventDefault();
+    setPreview({ ...preview, [name]: "" });
+    setValues({
+      ...values,
+      [name]: {
+        data: "",
+        name: Date.now(),
+        type: "image/png",
+        work: "delete",
+      },
+    });
+  };
 
   return (
     <div className="image__conatiner">
-      <Back title={'Upload Images'}/>
-    <div className="image_wrapper">
-      {localImage && <div className="imageCropper">
-      <ImageCropper source={localImage} onCrop={onCrop} height={400} width={500} fileName={localName} />
-      <button onClick={confirmCrop}>crop</button>
-      </div> }
-      <form onSubmit={uploadImage}>
-        <ImageSection preview={preview.image1} name={'image1'} onChange={onChange} setLocalName={setLocalName} />
-        <ImageSection preview={preview.image2} name={'image2'} onChange={onChange} setLocalName={setLocalName} />
-        <ImageSection preview={preview.image3} name={'image3'} onChange={onChange} setLocalName={setLocalName} />
-        <Button style={'glassy'}>Upload Image</Button>
-      </form>
-    </div>
+      <Back title={"Upload Images"} />
+      <div className="image_wrapper">
+        {localImage && (
+          <div className="imageCropper">
+            <ImageCropper
+              source={localImage}
+              onCrop={onCrop}
+              height={400}
+              width={500}
+              fileName={localName}
+            />
+            <Button style={"outline"} onClick={() => confirmCrop()}>
+              crop
+            </Button>
+          </div>
+        )}
+        <div>
+          <div className="image-container">
+            <ImageSection
+              preview={preview.image1}
+              name={"image1"}
+              onChange={onChange}
+              setLocalName={setLocalName}
+              onDelSelected={onDelSelected}
+            />
+            <ImageSection
+              preview={preview.image2}
+              name={"image2"}
+              onChange={onChange}
+              setLocalName={setLocalName}
+              onDelSelected={onDelSelected}
+            />
+            <ImageSection
+              preview={preview.image3}
+              name={"image3"}
+              onChange={onChange}
+              setLocalName={setLocalName}
+              onDelSelected={onDelSelected}
+            />
+          </div>
+          <div className="image-btn">
+            <Button style={"outline"} onClick={() => uploadImage()}>
+              {loading ? 'Uploading...' :'Upload Image'}
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -98,21 +175,35 @@ export const PreviewImage = ({ src }) => {
   );
 };
 
-export const ImageSection = ({preview, onChange, name, setLocalName}) => {
+export const ImageSection = ({
+  preview,
+  onChange,
+  name,
+  setLocalName,
+  onDelSelected,
+}) => {
   return (
-    <div className="image_container" key={name}>
-          {preview ? <PreviewImage src={preview} />: <span>Choose Image</span>}
-          <input
-            type="file"
-            id="file"
-            accept="image/*"
-            name={name}
-            onChange={onChange}
-          />
-          <label htmlFor="file" onClick={() => setLocalName(name)}></label>
-          <div className="image-choose">
-            
-          </div>
+    <div>
+      <div className="image_container" key={name}>
+        {preview && <PreviewImage src={preview} />}
+        <input
+          type="file"
+          id="file"
+          accept="image/*"
+          name={name}
+          onChange={onChange}
+        />
+        <label htmlFor="file" onClick={() => setLocalName(name)}></label>
+        <div className="image-choose">
+          <i class="fa-solid fa-arrow-up-from-bracket"></i>
+          <span>Choose file to upload</span>
         </div>
-  )
-}
+      </div>
+      <div className="img-delete">
+        <Button style={"outline"} onClick={(e) => onDelSelected(e, name)}>
+          <i class="fa-regular fa-trash-can"></i>
+        </Button>
+      </div>
+    </div>
+  );
+};

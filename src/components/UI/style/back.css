@@ -5,6 +5,14 @@
     justify-content: space-between;
     padding: 10px;
 }
+.back i{
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+}
+.back i:hover{
+    background-color: rgba(202, 202, 202, 0.349);
+}
 
 @media screen and (max-width: 450px) {
     .back{
