@@ -49,7 +49,7 @@ const getCurrentUser = () => {
 const deleteAccountAPI = async (email,password) => {
   var accessToken = JSON.parse(localStorage.getItem("accessToken"));
 
-  return await fetch(userURL, {
+  return await fetch(auth_url, {
     redirect: "follow",
     headers: {
       Accept: "application/json, text/plain, */*",
