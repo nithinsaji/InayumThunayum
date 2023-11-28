@@ -1,15 +1,12 @@
 import React from "react";
-import { Secondary } from "./Button";
 import './style/Modal.css'
-import { ParagraphText } from "./Text";
 
-const Modal = ({ updateModalState ,text}) => {
+const Modal = ({ children}) => {
 
     return (
       <div className='modalStyles' >
         <div className="modalContent">
-        <ParagraphText>{text}</ParagraphText>
-        <Secondary onClick={updateModalState}>Ok</Secondary>
+        {children}
         </div>
       </div>
     );

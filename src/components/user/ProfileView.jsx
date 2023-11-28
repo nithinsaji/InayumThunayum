@@ -2,6 +2,7 @@ import React from 'react'
 import './style/profileview.css'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Carousel } from '../UI/Card';
+import Back from '../UI/Back';
 
 const ProfileView = () => {
 
@@ -16,10 +17,7 @@ const ProfileView = () => {
 
     return (
         <div className={`profileview`}>
-            <div className='profileview__fixed'>
-                <i class="fa-solid fa-chevron-left" onClick={() => navigate(-1)}></i>
-                <span>Back</span>
-            </div>
+            <Back title={details.name}/>
             <div>
                 <div className='view__container'>
                     <div className='view__scroll-image'>

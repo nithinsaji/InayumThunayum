@@ -2,7 +2,6 @@
     min-height: calc(100vh - 100px);
     height: 100%;
     width: calc(100% - 30px);
-    background-color: var(--first-color-light);
     margin: 10px 15px;
 }
 .profileview__fixed{

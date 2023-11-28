@@ -78,7 +78,28 @@ const UpdateImage = () => {
   };
   const uploadImage = (e) => {
     setLoading(true)
-    UserService.updateImageAPI(values).then(() => setLoading(false));
+    UserService.updateImageAPI(values).then((res) => {
+      setValues({image1: {
+        data: "",
+        name: Date.now(),
+        type: "image/png",
+        work: "initial",
+      },
+      image2: {
+        data: "",
+        name: Date.now(),
+        type: "image/png",
+        work: "initial",
+      },
+      image3: {
+        data: "",
+        name: Date.now(),
+        type: "image/png",
+        work: "initial",
+      },})
+      res.status === 'success' ? toast.success("Image Uploaded successfully") : toast.error("Image Upload Failed. Try again.");
+      setLoading(false)
+    });
   };
 
   const onCrop = (imageRaw, imageBlob, fileName) => {
@@ -111,6 +132,7 @@ const UpdateImage = () => {
       },
     });
   };
+  
 
   return (
     <div className="image__conatiner">
@@ -121,11 +143,12 @@ const UpdateImage = () => {
             <ImageCropper
               source={localImage}
               onCrop={onCrop}
-              height={400}
-              width={500}
+              height={500}
+              width={400}
               fileName={localName}
             />
             <Button style={"outline"} onClick={() => confirmCrop()}>
+            <i class="fa-solid fa-crop-simple"></i>
               crop
             </Button>
           </div>

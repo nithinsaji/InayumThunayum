@@ -26,3 +26,10 @@ export const Secondary = ({children, onClick}) => {
         </button>
     )
 }
+export const Delete = ({children, onClick}) => {
+    return (
+        <button className={`button delete`} onClick={onClick} >
+            {children}
+        </button>
+    )
+}

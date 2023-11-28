@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import UserService from "../../services/user.service";
+import { Secondary } from "../UI/Button";
 import FullScreenLoading from "../UI/Loading";
 import Modal from "../UI/Modal";
+import { ParagraphText } from "../UI/Text";
 import "./style/Search.css";
 
 const Search = () => {
@@ -27,7 +29,9 @@ const Search = () => {
     const gender = profile?.gender == "male" ? "female" : "male";
 
     await UserService.searchAPI(gender, values).then((response) => {
-      response.status === 'success' ? toast.success(response.message) : toast.error(response.message);
+      response.status === "success"
+        ? toast.success(response.message)
+        : toast.error(response.message);
       setLoading(false);
       navigate("/Dashboard/");
     });
@@ -109,12 +113,14 @@ const Search = () => {
           </div>
         )
       ) : (
-        <Modal
-          text={text}
-          updateModalState={() =>
-            navigate("/Dashboard/settings", { replace: true })
-          }
-        />
+        <Modal>
+          <ParagraphText>{text}</ParagraphText>
+          <Secondary
+            onClick={() => navigate("/Dashboard/settings", { replace: true })}
+          >
+            Go To Profile
+          </Secondary>
+        </Modal>
       )}
     </>
   );

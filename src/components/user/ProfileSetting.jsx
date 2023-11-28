@@ -33,7 +33,9 @@ const ProfileSetting = () => {
         <div className="view__profile-details">
           {!edit ? (
             <>
-            <Button style={'outline'} onClick={() => setEdit(true)}>Edit</Button>
+            <Button style={'secondary'} onClick={() => setEdit(true)}>
+            <i class="fa-regular fa-pen-to-square"></i>
+              Edit</Button>
               <div className="profile_container">
               <div className="details__conatiner">
                 <h2 className="view__title">

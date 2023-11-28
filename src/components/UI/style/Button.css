@@ -28,6 +28,7 @@
 .secondary{
     background-color: white;
     border: 1px solid violet;
+    color: violet;
 }
 
 /* normal */
@@ -49,6 +50,14 @@
 .outline{
     background: white;
     font-size: 14px;
+}
+
+.delete{
+    border: 1px solid red;
+    color: red;
+    background-color: transparent;
+    box-shadow: 1px 1px 12px 1px rgba(255, 0, 0, 0.15);
+    border-radius: 10px;
 }
 
 

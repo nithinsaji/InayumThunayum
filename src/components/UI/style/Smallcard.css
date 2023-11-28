@@ -54,3 +54,12 @@
         width: 100%;
     }
 }
+.fa-xmark{
+    color: red;
+}
+.fa-check{
+    color: green;
+}
+.fa-trash-can{
+    color: rgb(0, 119, 255);
+}

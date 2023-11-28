@@ -1,47 +1,52 @@
-import React from 'react'
-import { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { toast } from 'sonner'
-import AuthService from '../../services/auth.service'
-import Input from '../UI/Input'
-import Loader from '../UI/Loader'
-import Modal from '../UI/Modal'
-import './style/Login.css'
-
+import React from "react";
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import AuthService from "../../services/auth.service";
+import { Secondary } from "../UI/Button";
+import Input from "../UI/Input";
+import Loader from "../UI/Loader";
+import Modal from "../UI/Modal";
+import { ParagraphText } from "../UI/Text";
+import "./style/Login.css";
 
 const LoginForm = () => {
-
   const [values, setValues] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
-  const [loading , setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleSubmit = async (e) => {
-    setLoading(true)
+    setLoading(true);
     e.preventDefault();
     try {
       await AuthService.login(values.email, values.password).then(
         (response) => {
-          response.status === 'success' ? toast.success('Login Successful') : toast.error(response.message);
-          response.status !== 'success' && setLoading(false)
+          response.status === "success"
+            ? toast.success("Login Successful")
+            : toast.error(response.message);
+          response.status !== "success" && setLoading(false);
           const role = response.data.role;
 
           setValues({
             email: "",
-            password: ""
-          })
-          setLoading(false)
-            navigate(location.state?.from?.pathname || role === 'Admin' ? "/AdminDashboard" : "/Dashboard", { replace: true });
+            password: "",
+          });
+          setLoading(false);
+          navigate(
+            location.state?.from?.pathname || role === "Admin"
+              ? "/AdminDashboard"
+              : "/Dashboard",
+            { replace: true }
+          );
         }
-      )
-    } catch (err) {
-      
-    }
+      );
+    } catch (err) {}
   };
 
   const onChange = (e) => {
@@ -49,35 +54,66 @@ const LoginForm = () => {
   };
 
   const [showModal, setShowModal] = useState(false);
-  const toggleModal = () => setShowModal(state => !state);
+  const toggleModal = () => setShowModal((state) => !state);
 
-  const text = 'This feature is currently unavailable. Did you forgot your password you can contact our support team and get password.';
+  const text =
+    "This feature is currently unavailable. Did you forgot your password you can contact our support team and get password.";
 
   return (
     <section className="app__container">
       <div className="box">
-        <div className='top__container'></div>
+        <div className="top__container"></div>
         <div className="inner__container">
-          <div className='box__container'>
+          <div className="box__container">
             <h1>Login</h1>
             <form className="form__container" onSubmit={handleSubmit}>
-              <Input type={'email'} name={'email'} label={'Email'} onChange={onChange} value={values.email} required/>
-              <Input type={'password'} name={'password'} label={'Password'} onChange={onChange} value={values.password} required/>
-              <a href="#" className='muted__link' onClick={() => setShowModal(true)}>Forgot Your Password?</a>
-              <div className='last'>
-                <button className='submit__button'>
+              <Input
+                type={"email"}
+                name={"email"}
+                label={"Email"}
+                onChange={onChange}
+                value={values.email}
+                required
+              />
+              <Input
+                type={"password"}
+                name={"password"}
+                label={"Password"}
+                onChange={onChange}
+                value={values.password}
+                required
+              />
+              <a
+                href="#"
+                className="muted__link"
+                onClick={() => setShowModal(true)}
+              >
+                Forgot Your Password?
+              </a>
+              <div className="last">
+                <button className="submit__button">
                   {loading && <Loader />}
-                  {!loading && 'Log In'}
+                  {!loading && "Log In"}
                 </button>
-                <span className="text">Don't have an acoount? <span className='link' ><Link to='/signup'>Sign Up</Link></span></span>
+                <span className="text">
+                  Don't have an acoount?{" "}
+                  <span className="link">
+                    <Link to="/signup">Sign Up</Link>
+                  </span>
+                </span>
               </div>
             </form>
           </div>
         </div>
       </div>
-      {showModal && <Modal updateModalState={toggleModal} text={text}/>}
+      {showModal && (
+        <Modal>
+          <ParagraphText>{text}</ParagraphText>
+          <Secondary onClick={toggleModal}>Ok</Secondary>
+        </Modal>
+      )}
     </section>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;
