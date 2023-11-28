@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import UserService from "../../services/user.service";
+import AuthService from "../../services/auth.service";
 import Back from "../UI/Back";
 import Button, { Delete } from "../UI/Button";
 import Input from "../UI/Input";
@@ -29,7 +29,7 @@ const DeleteAccount = () => {
     if(values.delete !== 'DELETE') return;
     setLoading(true);
     try {
-      await UserService.deleteAccountAPI(values.email, values.password).then(
+      await AuthService.deleteAccountAPI(values.email, values.password).then(
         (response) => {
           response.status === "success"
             ? toast.success(response.message)
