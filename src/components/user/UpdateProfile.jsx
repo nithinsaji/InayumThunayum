@@ -211,8 +211,6 @@ const UpdateProfile = ({ setEdit }) => {
   ];
 
   return (
-    <>
-      {!loading ? (
         <>
           <div className="details__conatiner form__container">
             <h2 className="view__title">
@@ -273,13 +271,9 @@ const UpdateProfile = ({ setEdit }) => {
           </div>
           <div className="btn_group">
             <Secondary onClick={() => setEdit(false)}>Cancel</Secondary>
-            <Primary onClick={onSubmitHandler}>Update</Primary>
+            <Primary onClick={onSubmitHandler} loading={loading}>Update</Primary>
           </div>
         </>
-      ):<div className="fs-container">
-      <FullScreenLoading />
-    </div>}
-    </>
   );
 };
 

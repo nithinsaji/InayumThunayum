@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import AuthService from "../../services/auth.service";
 import { Secondary } from "../UI/Button";
 import Input from "../UI/Input";
-import Loader from "../UI/Loader";
+import Loader, { ButtonLoader } from "../UI/Loader";
 import Modal from "../UI/Modal";
 import { ParagraphText } from "../UI/Text";
 import "./style/Login.css";
@@ -92,8 +92,7 @@ const LoginForm = () => {
               </a>
               <div className="last">
                 <button className="submit__button">
-                  {loading && <Loader />}
-                  {!loading && "Log In"}
+                Log In{loading && <ButtonLoader />}
                 </button>
                 <span className="text">
                   Don't have an acoount?{" "}

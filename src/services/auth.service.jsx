@@ -1,5 +1,5 @@
 
-const auth_url = 'https://script.google.com/macros/s/AKfycbw6dv_7G25ktElWJ2gMnDbO-_SrYOj2cc-krrVDUyUAAbeEeVQpqO8zX6qCfRTXowTEsw/exec';
+const auth_url = 'https://script.google.com/macros/s/AKfycbykzAk9ogXxSouc8BEK6YLHcRgZ8E1ipdLJI39AXz9wWn3zzcIIk9bmHrmBqsTIdPkS-w/exec';
 
 const register = async (name, number, email, password ) => {
 
@@ -68,11 +68,34 @@ const deleteAccountAPI = async (email,password) => {
     });
 };
 
+const changePasswordAPI = async (oldPassword,password) => {
+  var accessToken = JSON.parse(localStorage.getItem("accessToken"));
+
+  return await fetch(auth_url, {
+    redirect: "follow",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      Authorization: `${accessToken}`,
+      oldPassword: oldPassword,
+      password: password,
+      fname: "changePassword",
+    }),
+  })
+    .then((res) => res.json())
+    .then((result) => {
+      return result;
+    });
+};
+
 const AuthService = {
   register,
   login,
   getCurrentUser,
-  deleteAccountAPI
+  deleteAccountAPI,
+  changePasswordAPI
 }
 
 export default AuthService;

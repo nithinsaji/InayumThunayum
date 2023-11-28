@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "sonner";
 import InterestService from "../../services/interest.service";
 import UserService from "../../services/user.service";
 import FullScreenLoading from "../UI/Loading";
@@ -7,6 +8,8 @@ import "./style/Shortlist.css";
 
 const Shortlist = () => {
   const [loading, setLoading] = useState(true);
+  const [loadingInterest, setLoadingInterest] = useState(0);
+  const [loadingFav, setLoadingFav] = useState(0);
   const [result, setResult] = useState(null);
   const [favoriteList, setFavoriteList] = useState(
     JSON.parse(localStorage.getItem("favorite")) || {}
@@ -28,6 +31,7 @@ const Shortlist = () => {
   };
 
   const favorite = async (fav_id) => {
+    setLoadingFav(fav_id)
     let user = localStorage.getItem("user");
     let searchResult = JSON.parse(localStorage.getItem("searchResult"));
     let favoriteList = JSON.parse(localStorage.getItem("favoriteList")) || [];
@@ -58,15 +62,18 @@ const Shortlist = () => {
           JSON.stringify({ ...favoriteList, [fav_id]: res.added })
         );
         setFavoriteList({ ...favoriteList, [fav_id]: res.added });
+        setLoadingFav(0)
       });
     }
   };
 
   const sentInterest = async (sendId) => {
+    setLoadingInterest(sendId)
     let user = localStorage.getItem("user");
     if (user != null && user != undefined) {
       user = JSON.parse(user);
       await InterestService.sentInterestAPI(user?.id, sendId).then((res) => {
+        if(!res?.message.includes("cannot remove request")){
         localStorage.setItem(
           "interest",
           JSON.stringify({
@@ -78,6 +85,10 @@ const Shortlist = () => {
           ...interestList,
           [sendId]: res.status == "success" ? true : false,
         });
+      }else{
+        toast.error(res?.message)
+      }
+        setLoadingInterest(0)
       });
     }
   };
@@ -96,6 +107,8 @@ const Shortlist = () => {
             favoriteList={favoriteList}
             interestList={interestList}
             sentInterest={sentInterest}
+            loadingFav={loadingFav}
+            loadingInterest={loadingInterest}
           ></SmallCard>
         ))
       ) : (

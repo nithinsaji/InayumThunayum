@@ -5,6 +5,8 @@ import SmallCard from '../../UI/SmallCard';
 
 const InterestAccepted = () => {
   const [loading, setLoading] = useState(true);
+  const [loadingAccept, setLoadingAccept] = useState(0);
+  const [loadingReject, setLoadingReject] = useState(0);
     const [result, setResult] = useState(JSON.parse(localStorage.getItem("acceptInterest")) || []);
   
     const getAcceptInterest = async() => {
@@ -20,6 +22,7 @@ const InterestAccepted = () => {
     };
   
     const acceptInterest = async (acceptId) => {
+      setLoadingAccept(acceptId)
       let user = localStorage.getItem("user");
       let interestedReceived = JSON.parse(
         localStorage.getItem("interestedReceived")
@@ -52,12 +55,14 @@ const InterestAccepted = () => {
             "interestedReceived",
             JSON.stringify(interestedReceived)
           );
+          setLoadingAccept(0)
         });
         setResult(acceptInterestVal)
       }
     };
   
     const rejectInterest = async (acceptId) => {
+      setLoadingReject(acceptId)
       let user = localStorage.getItem("user");
       let acceptInterestVal =
       JSON.parse(localStorage.getItem("acceptInterest")) || [];
@@ -89,6 +94,7 @@ const InterestAccepted = () => {
             "acceptInterest",
             JSON.stringify(acceptInterestVal)
           );
+          setLoadingReject(0)
         });
         setResult(acceptInterestVal)
       }
@@ -106,6 +112,8 @@ const InterestAccepted = () => {
                 acceptInterest = {acceptInterest}
                 rejectInterest = {rejectInterest}
                 accepted = {true}
+                loadingAccept={loadingAccept}
+                loadingReject={loadingReject}
               ></SmallCard>
         ))
       ) : (

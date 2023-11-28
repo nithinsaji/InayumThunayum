@@ -6,13 +6,9 @@ import SmallCard from '../../UI/SmallCard';
 
 const InterestRejected = () => {
   const [loading, setLoading] = useState(true);
+  const [loadingAccept, setLoadingAccept] = useState(0);
+  const [loadingReject, setLoadingReject] = useState(0);
     const [result, setResult] = useState(JSON.parse(localStorage.getItem("favoriteList")) || []);
-    const [favoriteList, setFavoriteList] = useState(
-      JSON.parse(localStorage.getItem("favorite")) || {}
-    );
-    const [interestList, setInterestList] = useState(
-      JSON.parse(localStorage.getItem("interest")) || {}
-    );
   
     const getRejectInterest = useCallback(async() => {
       console.log('getRejectInterest');
@@ -28,6 +24,7 @@ const InterestRejected = () => {
     },[])
   
     const acceptInterest = async (acceptId) => {
+      setLoadingAccept(acceptId)
       let user = localStorage.getItem("user");
       let rejectInterest = JSON.parse(
         localStorage.getItem("rejectInterest")
@@ -60,12 +57,14 @@ const InterestRejected = () => {
             "rejectInterest",
             JSON.stringify(rejectInterest)
           );
+          setLoadingAccept(0)
         });
         setResult(rejectInterest)
       }
     };
   
     const rejectInterest = async (acceptId) => {
+      setLoadingReject(acceptId)
       let user = localStorage.getItem("user");
       let interestedReceived = JSON.parse(
         localStorage.getItem("interestedReceived")
@@ -98,6 +97,7 @@ const InterestRejected = () => {
             "interestedReceived",
             JSON.stringify(interestedReceived)
           );
+          setLoadingReject(0)
         });
         setResult(rejectInterestVal)
       }
@@ -115,6 +115,8 @@ const InterestRejected = () => {
                 acceptInterest = {acceptInterest}
                 rejectInterest = {rejectInterest}
                 rejected = {true}
+                loadingAccept={loadingAccept}
+                loadingReject={loadingReject}
               ></SmallCard>
         ))
       ) : (

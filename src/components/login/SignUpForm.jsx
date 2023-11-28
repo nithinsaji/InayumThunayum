@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import AuthService from '../../services/auth.service';
 import Input from '../UI/Input'
-import Loader from '../UI/Loader';
+import Loader, { ButtonLoader } from '../UI/Loader';
 
 const SignUpForm = () => {
 
@@ -106,10 +106,9 @@ const SignUpForm = () => {
             ))}
             <div className='last'>
               <button className='submit__button'>
-              {loading && <Loader />}
-                  {!loading && 'Signup'}
+              Signup{loading && <ButtonLoader />}
               </button>
-              <span className="text">Already have an acoount? <span className='link'><Link to={'/signin'}>Sign In</Link> </span></span>
+              <span className="text">Already have an account? <span className='link'><Link to={'/signin'}>Sign In</Link> </span></span>
             </div>
           </form>
 

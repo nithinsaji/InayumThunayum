@@ -23,7 +23,7 @@ const Input = (props) => {
 
   return (
     <div className="input__box">
-      {inputProps.type !== "select" ? (
+      {type !== "select" ? (
         <>
           <label className="label">
             {label} {inputProps?.required && <span> (required)</span>}
@@ -39,7 +39,7 @@ const Input = (props) => {
             }
             focused={focused.toString()}
           />
-          {(inputProps?.name === "password" ||
+          {(inputProps?.name === "password" || inputProps?.name === "oldPassword" ||
             inputProps.name === "confirmPassword") &&
             (!show ? (
               <i class="fa-regular fa-eye" onClick={showPassword}></i>

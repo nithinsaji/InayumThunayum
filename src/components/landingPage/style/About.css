@@ -49,7 +49,7 @@
     max-width: 50%;
     border-radius: 12px;
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 450px) {
     .process_flex .list__content{
         max-width: 100%;
         width: 100%;

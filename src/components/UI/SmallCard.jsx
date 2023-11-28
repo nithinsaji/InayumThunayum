@@ -3,6 +3,7 @@ import "./style/Smallcard.css";
 import noimage from "../../assets/no-image.jpg";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import { ButtonLoader } from "./Loader";
 
 const SmallCard = ({
   favorite,
@@ -15,6 +16,10 @@ const SmallCard = ({
   callNow,
   accepted,
   rejected,
+  loadingFav,
+  loadingInterest,
+  loadingAccept,
+  loadingReject,
 }) => {
   return (
     <div className="sm-container">
@@ -36,11 +41,11 @@ const SmallCard = ({
         <div className="sm-btn">
           {sentInterest && (
             <Button style={"normal"} onClick={() => sentInterest(details?.id)}>
-              {interestList[details?.id] ? (
-                <i class="fa-regular fa-trash-can"></i>
+              {loadingInterest !== details.id ? (interestList[details?.id] ? (
+                <i class="fa-solid fa-heart"></i>
               ) : (
                 <i class="fa-regular fa-heart"></i>
-              )}
+              )): <ButtonLoader />}
               {interestList[details?.id] ? "Remove" : "Send Interest"}
             </Button>
           )}
@@ -54,11 +59,11 @@ const SmallCard = ({
               style={favoriteList[details?.id] ? "outline" : "normal"}
               onClick={() => favorite(details?.id)}
             >
-              {!favoriteList[details.id] ? (
+              {loadingFav !== details.id ? (!favoriteList[details.id] ? (
                 <i class="fa-regular fa-star"></i>
               ) : (
                 <i class="fa-solid fa-star"></i>
-              )}
+              )): <ButtonLoader />}
             </Button>
           )}
           {acceptInterest && (
@@ -66,11 +71,11 @@ const SmallCard = ({
               style={"normal"}
               onClick={() => acceptInterest(details?.id)}
             >
-              {accepted ? (
+              {loadingAccept !== details.id ? (accepted ? (
                 <i class="fa-regular fa-trash-can"></i>
               ) : (
                 <i class="fa-solid fa-check"></i>
-              )}
+              )):<ButtonLoader />}
               {accepted ? "Remove" : "Accept"}
             </Button>
           )}
@@ -79,11 +84,11 @@ const SmallCard = ({
               style={"normal"}
               onClick={() => rejectInterest(details?.id)}
             >
-              {rejected ? (
+              {loadingReject !== details.id ? (rejected ? (
                 <i class="fa-regular fa-trash-can"></i>
               ) : (
                 <i class="fa-solid fa-xmark"></i>
-              )}
+              )): <ButtonLoader/>}
               {rejected ? "Remove" : "Reject"}
             </Button>
           )}

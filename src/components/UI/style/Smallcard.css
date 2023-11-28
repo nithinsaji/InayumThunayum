@@ -34,7 +34,7 @@
     row-gap: 10px;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 450px) {
     .sm-container{
         flex-direction: row;
         max-width: 100%;

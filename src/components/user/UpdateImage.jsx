@@ -178,8 +178,8 @@ const UpdateImage = () => {
             />
           </div>
           <div className="image-btn">
-            <Button style={"outline"} onClick={() => uploadImage()}>
-              {loading ? 'Uploading...' :'Upload Image'}
+            <Button style={"outline"} onClick={() => uploadImage()} loading={loading}>
+              Upload Image
             </Button>
           </div>
         </div>

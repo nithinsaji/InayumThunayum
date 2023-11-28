@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 import "./style/Card.css";
-import noImage from '../../assets/no-image.jpg'
+import noImage from "../../assets/no-image.jpg";
+import { ButtonLoader } from "./Loader";
 
 const Card = ({
   favorite,
@@ -11,43 +12,44 @@ const Card = ({
   favoriteList,
   interestList,
   sentInterest,
+  loadingFav,
+  loadingInterest,
 }) => {
   const [carousel, setCarousel] = useState(false);
-  
+
   return (
     <>
       {carousel && (
         <div className="modal">
-          <div className="close" onClick={() => setCarousel(false)}>
-            <i class="fa-solid fa-xmark"></i>
-          </div>
-          <Carousel image={details.images} />
+          <Carousel image={details.images} onClick={setCarousel} />
         </div>
       )}
       {!carousel && (
         <div className="profile__card">
           <div className="profile__card-image">
             <img
-              src={details.images && details?.images[0] ? `https://drive.google.com/uc?id=${details.images[0]}` : noImage}
-              de
+              src={
+                details.images && details?.images[0]
+                  ? `https://drive.google.com/uc?id=${details.images[0]}`
+                  : noImage
+              }
               alt=""
               srcset=""
               onClick={() => setCarousel(true)}
             />
           </div>
           <div className="profile__top">
-              <Button
-                style={"glassy"}
-                onClick={() => remove(details.name, details.house_name)}
-              >
-                <i class="fa-solid fa-xmark"></i> ignore
-              </Button>
-              <Button style={"glassy"} onClick={() => setCarousel(true)}>
-                <i class="fa-regular fa-images"></i> {details?.images.length} / 3
-              </Button>
-            </div>
+            <Button
+              style={"glassy"}
+              onClick={() => remove(details.name, details.house_name)}
+            >
+              <i class="fa-solid fa-xmark"></i> ignore
+            </Button>
+            <Button style={"glassy"} onClick={() => setCarousel(true)}>
+              <i class="fa-regular fa-images"></i> {details?.images.length} / 3
+            </Button>
+          </div>
           <div className="profile__card-content">
-            
             <div className="profile__bottom">
               <Link to="/Dashboard/profileview" state={details}>
                 <div className="profile__desc">
@@ -64,21 +66,36 @@ const Card = ({
               </Link>
               <div className="profile__btn">
                 <Button style={"normal"}>
-                  <i class="fa-solid fa-phone"></i>Call Now
+                  <i class="fa-solid fa-phone"></i>Call
                 </Button>
                 <Button
                   style={"normal"}
                   onClick={() => sentInterest(details.id)}
                 >
-                  <i class="fa-regular fa-heart"></i>
+                  {loadingInterest !== details.id ? (
+                    interestList[details.id] ? (
+                      <i class="fa-solid fa-heart"></i>
+                    ) : (
+                      <i class="fa-regular fa-heart"></i>
+                    )
+                  ) : (
+                    <ButtonLoader />
+                  )}
                   {interestList[details.id] ? "Remove" : "Send Interest"}
                 </Button>
                 <Button
                   style={favoriteList[details.id] ? "glassy" : "normal"}
                   onClick={() => favorite(details.id)}
                 >
-                  {!favoriteList[details.id] ? <i class="fa-regular fa-star"></i>:
-                  <i class="fa-solid fa-star"></i>}
+                  {loadingFav !== details.id ? (
+                    !favoriteList[details.id] ? (
+                      <i class="fa-regular fa-star"></i>
+                    ) : (
+                      <i class="fa-solid fa-star"></i>
+                    )
+                  ) : (
+                    <ButtonLoader />
+                  )}
                 </Button>
               </div>
             </div>
@@ -91,45 +108,60 @@ const Card = ({
 
 export default Card;
 
-export const Carousel = ({ image }) => {
+export const Carousel = ({ image, onClick }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const goToPrevious = () =>{
+  const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide ? image.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
-  }
+  };
 
-  const goToNext = () =>{
+  const goToNext = () => {
     const isLastSlide = currentIndex === image.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
-  }
+  };
 
-  return (<>
-    {image ? <div id="carouselExampleIndicators" class="carousel slide ">
-      <div class="carousel-indicators">
-        <div className="carousel-btn carousel-left" onClick={goToPrevious}>
-        <i class="fa-solid fa-angle-left"></i>
+  const goToStraight= (index) => {
+    setCurrentIndex(index);
+  };
+
+  return (
+    <>
+      {image ? (
+        <div id="carouselExampleIndicators" class="carousel slide ">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div className="close" onClick={() => onClick(false)}>
+                <i class="fa-solid fa-xmark"></i>
+              </div>
+              <div class="carousel-indicators">
+                <div
+                  className="carousel-btn carousel-left"
+                  onClick={goToPrevious}
+                >
+                  <i class="fa-solid fa-angle-left"></i>
+                </div>
+                <div className="carousel-btn carousel-right" onClick={goToNext}>
+                  <i class="fa-solid fa-angle-right"></i>
+                </div>
+              </div>
+              <img
+                src={`https://drive.google.com/uc?id=${image[currentIndex]}`}
+                alt="..."
+              />
+              <div className="carousel-dot">
+              {image?.map((val,index)=>(
+                <div className={`dot-indicators ${index === currentIndex && 'active'}`} onClick={() => goToStraight(index)}></div>
+              ))}
+              </div>
+            </div>
+          </div>
         </div>
-      <div className="carousel-btn carousel-right" onClick={goToNext}>
-      <i class="fa-solid fa-angle-right"></i>
-        </div>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img
-            src={`https://drive.google.com/uc?id=${image[currentIndex]}`}
-            alt="..."
-          />
-        </div>
-      </div>
-    </div>:
-    <img
-    src={noImage}
-    class="d-block w-100"
-    alt="..."
-  />}
+      ) : (
+        <img src={noImage} class="d-block w-100" alt="..." />
+      )}
     </>
   );
 };

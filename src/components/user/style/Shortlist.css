@@ -17,7 +17,7 @@
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr));
     }
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 450px) {
     .userhome__container{
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 100%), 1fr));
     }

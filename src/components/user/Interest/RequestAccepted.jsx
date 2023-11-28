@@ -7,6 +7,7 @@ import SmallCard from '../../UI/SmallCard';
 
 const RequestAccepted = () => {
     const [loading, setLoading] = useState(true);
+    const [loadingFav, setLoadingFav] = useState(0);
     const [result, setResult] = useState(JSON.parse(localStorage.getItem("favoriteList")) || []);
     const [favoriteList, setFavoriteList] = useState(
       JSON.parse(localStorage.getItem("favorite")) || {}
@@ -25,6 +26,7 @@ const RequestAccepted = () => {
     },[])
   
     const favorite = async (fav_id) => {
+      setLoadingFav(fav_id)
       let user = localStorage.getItem("user");
       let searchResult = JSON.parse(localStorage.getItem("approvedInterest"));
       let favoriteVal = JSON.parse(localStorage.getItem("favoriteList")) || [];
@@ -54,6 +56,7 @@ const RequestAccepted = () => {
             JSON.stringify({ ...favoriteList, [fav_id]: res.added })
           );
           setFavoriteList({ ...favoriteList, [fav_id]: res.added });
+          setLoadingFav(0)
         });
       }
     };
@@ -74,6 +77,7 @@ const RequestAccepted = () => {
             favorite={favorite}
             favoriteList={favoriteList}
             callNow={callNow}
+            loadingFav={loadingFav}
           ></SmallCard>
         ))
       ) : (

@@ -114,7 +114,7 @@ const DeleteAccount = () => {
                 <Button style={"outline"} onClick={() => setDel(false)}>
                   Cancel
                 </Button>
-                <Delete onClick={handleDeleteAccount}>{loading ? 'Deleting...':'Delete'}</Delete>
+                <Delete onClick={handleDeleteAccount} loading={loading}>Delete</Delete>
               </div>
             </>
           )}

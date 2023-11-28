@@ -14,3 +14,9 @@ const Loader = () => {
 };
 
 export default Loader;
+
+export const ButtonLoader = () =>{
+  return (
+    <div className="btn-loader"></div>
+  )
+}

@@ -57,7 +57,7 @@
     padding: 10px;
 }
 .form button {
-  height: 55px;
+  height: 45px;
   width: 100%;
   color: #fff;
   font-size: 1rem;
@@ -67,6 +67,9 @@
   cursor: pointer;
   transition: all 0.2s ease;
   background: rgb(130, 106, 251);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .form button:hover {
   background: rgb(88, 56, 250);

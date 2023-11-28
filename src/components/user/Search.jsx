@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import UserService from "../../services/user.service";
 import { Secondary } from "../UI/Button";
-import FullScreenLoading from "../UI/Loading";
+import { ButtonLoader } from "../UI/Loader";
 import Modal from "../UI/Modal";
 import { ParagraphText } from "../UI/Text";
 import "./style/Search.css";
@@ -46,7 +46,6 @@ const Search = () => {
   return (
     <>
       {profile?.gender ? (
-        !loading ? (
           <section class="searchcontainer">
             <header>Search Your Partner</header>
             <form class="form" onSubmit={handleSubmit}>
@@ -104,14 +103,9 @@ const Search = () => {
                   </select>
                 </div>
               </div>
-              <button>Search</button>
+              <button>Search {loading && <ButtonLoader />}</button>
             </form>
           </section>
-        ) : (
-          <div className="fs-container">
-            <FullScreenLoading />
-          </div>
-        )
       ) : (
         <Modal>
           <ParagraphText>{text}</ParagraphText>

@@ -3,10 +3,12 @@ import Card from "../UI/Card";
 import UserService from "../../services/user.service";
 import InterestService from "../../services/interest.service";
 import FullScreenLoading from "../UI/Loading";
-import { Navigate, useLocation } from "react-router-dom";
+import { toast } from "sonner";
 
 const UserHome = () => {
   const [loading, setLoading] = useState(true);
+  const [loadingInterest, setLoadingInterest] = useState(0);
+  const [loadingFav, setLoadingFav] = useState(0);
   const [result, setResult] = useState(null);
   const [favoriteList, setFavoriteList] = useState(
     JSON.parse(localStorage.getItem("favorite")) || {}
@@ -15,8 +17,6 @@ const UserHome = () => {
     JSON.parse(localStorage.getItem("interest")) || {}
   );
 
-  const location = useLocation();
-
   const getProfile = async () => {
     // if('The token has expired'.includes(response?.message)) return <Navigate to="/signin" state={{ from: location }} replace />
     let user = localStorage.getItem("user");
@@ -24,6 +24,7 @@ const UserHome = () => {
       user = JSON.parse(user);
       await UserService.getProfileAPI(user?.id);
       await UserService.getFavoriteListAPI(user?.id);
+      await InterestService.getInterestListAPI(user?.id);
       await InterestService.getAllInterestListAPI(user?.id).then(()=> setLoading(false))
     }
   };
@@ -46,7 +47,7 @@ const UserHome = () => {
   };
 
   const favorite = async (fav_id) => {
-    setLoading(true);
+    setLoadingFav(fav_id);
     let user = localStorage.getItem("user");
     let searchResult = JSON.parse(localStorage.getItem("searchResult"));
     let favoriteArr = JSON.parse(localStorage.getItem("favoriteList"));
@@ -73,11 +74,11 @@ const UserHome = () => {
         setFavoriteList({ ...favoriteList, [fav_id]: res?.added });
       });
     }
-    setLoading(false);
+    setLoadingFav(0);
   };
 
   const sentInterest = async (sendId) => {
-    setLoading(true);
+    setLoadingInterest(sendId);
     let user = localStorage.getItem("user");
     let searchResult = JSON.parse(localStorage.getItem("searchResult"));
     let interestArr = JSON.parse(localStorage.getItem("interestList"));
@@ -85,18 +86,16 @@ const UserHome = () => {
     if (user != null && user != undefined) {
       user = JSON.parse(user);
       await InterestService.sentInterestAPI(user?.id, sendId).then((res) => {
-
+        if(!res?.message.includes("cannot remove request")){
         const searchIndex = searchResult.findIndex(
           (value) => value.id === sendId
         );
         const interestIndex = interestArr.findIndex((f) => f.id === sendId);
 
-        console.log(searchResult[searchIndex]);
-
         if (res?.status === 'success') {
           interestArr.push(searchResult[searchIndex]);
           localStorage.setItem("interestList", JSON.stringify(interestArr));
-        } else {
+        } else if (res?.status === 'error' && !res?.message.includes("cannot remove request")){
           interestArr.splice(interestIndex, 1);
           localStorage.setItem("interestList", JSON.stringify(interestArr));
         }
@@ -112,9 +111,12 @@ const UserHome = () => {
           ...interestList,
           [sendId]: res?.status == "success" ? true : false,
         });
+      }else{
+        toast.error(res?.message)
+      }
       });
     }
-    setLoading(false);
+    setLoadingInterest(0);
   };
 
   useEffect(() => {
@@ -135,6 +137,8 @@ const UserHome = () => {
                 favoriteList={favoriteList}
                 interestList={interestList}
                 sentInterest={sentInterest}
+                loadingFav={loadingFav}
+                loadingInterest={loadingInterest}
               ></Card>
             ))
           ) : (
