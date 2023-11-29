@@ -21,7 +21,7 @@ const ProfileView = () => {
             <div>
                 <div className='view__container'>
                     <div className='view__scroll-image'>
-                        <Carousel image={details.images} />
+                        <Carousel image={details?.images} />
                     </div>
                     <div className='view__profile-details'>
                         <div className="details__conatiner">
@@ -30,27 +30,27 @@ const ProfileView = () => {
                                 <tr>
                                     <td>Name :</td>
                                     <td>{details.name}</td>
-                                    <td>{tick}</td>
+                                    {details.name && <td>{tick}</td>}
                                 </tr>
                                 <tr>
                                     <td>House Name :</td>
                                     <td>{details.house_name}</td>
-                                    <td>{tick}</td>
+                                    {details.house_name && <td>{tick}</td>}
                                 </tr>
                                 <tr>
                                     <td>Age</td>
                                     <td>{details.age}</td>
-                                    <td>{tick}</td>
+                                    {details.age && <td>{tick}</td>}
                                 </tr>
                                 <tr>
                                     <td>DOB</td>
                                     <td>{details?.dob && dob?.toISOString().split('T')[0]}</td>
-                                    <td>{tick}</td>
+                                    {details?.dob && dob?.toISOString().split('T')[0] && <td>{tick}</td>}
                                 </tr>
                                 <tr>
                                     <td>Mother Tongue</td>
                                     <td>{details.mother_tongue}</td>
-                                    <td>{tick}</td>
+                                    {details.mother_tongue && <td>{tick}</td>}
                                 </tr></table>
                         </div>
                         <div className="details__conatiner">
@@ -59,12 +59,12 @@ const ProfileView = () => {
                                 <tr>
                                     <td>Religion :</td>
                                     <td>{details.religion}</td>
-                                    <td>{tick}</td>
+                                    {details.religion && <td>{tick}</td>}
                                 </tr>
                                 <tr>
                                     <td>Caste :</td>
                                     <td>{details.caste}</td>
-                                    <td>{tick}</td>
+                                    {details.caste && <td>{tick}</td>}
                                 </tr></table>
                         </div>
                         <div className="details__conatiner">
@@ -73,42 +73,42 @@ const ProfileView = () => {
                                 <tr>
                                     <td>Marital Status :</td>
                                     <td>{details.marital_status}</td>
-                                    <td>{tick}</td>
+                                    {details.marital_status && <td>{tick}</td>}
                                 </tr>
                                 <tr>
                                     <td>Height :</td>
                                     <td>{details.height}</td>
-                                    <td>{tick}</td>
+                                    {details.height && <td>{tick}</td>}
                                 </tr>
                                 <tr>
                                     <td>Weight :</td>
                                     <td>{details.weight}</td>
-                                    <td>{tick}</td>
+                                    {details.weight && <td>{tick}</td>}
                                 </tr>
                                 <tr>
                                     <td>Blood Group</td>
                                     <td>{details.blood_group}</td>
-                                    <td>{tick}</td>
+                                    {details.blood_group && <td>{tick}</td>}
                                 </tr>
                                 <tr>
                                     <td>Qualification :</td>
                                     <td>{details.qualification}</td>
-                                    <td>{tick}</td>
+                                    {details.qualification && <td>{tick}</td>}
                                 </tr>
                                 <tr>
                                     <td>Occupation :</td>
                                     <td>{details.ocupation}</td>
-                                    <td>{tick}</td>
+                                    {details.ocupation && <td>{tick}</td>}
                                 </tr>
                                 <tr>
                                     <td>Any Disability :</td>
                                     <td>{details.disability}</td>
-                                    <td>{tick}</td>
+                                    {details.disability && <td>{tick}</td>}
                                 </tr>
                                 <tr>
                                     <td>Nationality :</td>
                                     <td>{details.nationality}</td>
-                                    <td>{tick}</td>
+                                    {details.nationality && <td>{tick}</td>}
                                 </tr>
                                 </table>
                         </div>

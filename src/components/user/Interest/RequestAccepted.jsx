@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+
 import InterestService from '../../../services/interest.service';
 import UserService from '../../../services/user.service';
 import FullScreenLoading from '../../UI/Loading';
@@ -12,6 +15,16 @@ const RequestAccepted = () => {
     const [favoriteList, setFavoriteList] = useState(
       JSON.parse(localStorage.getItem("favorite")) || {}
     );
+
+    const navigate = useNavigate();
+
+  const validateToken = (message) => {
+    if(message === 'The token has expired', message === 'The token is not vaild') {
+        toast.error(message);
+        localStorage.clear();
+        navigate('/signin')
+    }
+  }
   
     const getApprovedInterest = useCallback(async() => {
       setLoading(true);
@@ -19,6 +32,7 @@ const RequestAccepted = () => {
       if (user != null && user != undefined) {
         user = JSON.parse(user);
         await InterestService.getApprovedInterestAPI(user?.id).then((res) => {
+          validateToken(res?.message)
           setResult(res)
         });
       }
@@ -34,6 +48,7 @@ const RequestAccepted = () => {
       if (user != null && user != undefined) {
         user = JSON.parse(user);
         await UserService.favoriteAPI(user?.id, fav_id).then((res) => {
+          validateToken(res?.message)
           const searchIndex = searchResult?.findIndex(
             (value) => value.id === fav_id
           );

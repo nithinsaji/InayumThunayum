@@ -1,16 +1,29 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import AdminService from '../../services/admin.service';
 
 var data = null;
 const GetNumber = () => {
   const [loading, setloading] = useState(true);
   const [name, setName] = useState('')
+
+  const navigate = useNavigate();
+
+  const validateToken = (message) => {
+    if(message === 'The token has expired', message === 'The token is not vaild') {
+        toast.error(message);
+        localStorage.clear();
+        navigate('/signin')
+    }
+  }
   
 
   const search = async() =>{
     setloading(true)
     await AdminService.getUserNumberAPI(name).then(
       (res) => {
+        validateToken(res?.message)
         data = res.data;
         setloading(false)
         console.log(data);

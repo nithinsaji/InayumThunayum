@@ -4,6 +4,10 @@ import UserService from "../../services/user.service";
 import InterestService from "../../services/interest.service";
 import FullScreenLoading from "../UI/Loading";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import Modal from "../UI/Modal";
+import { ParagraphText } from "../UI/Text";
+import Button from "../UI/Button";
 
 const UserHome = () => {
   const [loading, setLoading] = useState(true);
@@ -16,9 +20,9 @@ const UserHome = () => {
   const [interestList, setInterestList] = useState(
     JSON.parse(localStorage.getItem("interest")) || {}
   );
+  const [call, setCall] = useState(false);
 
   const getProfile = async () => {
-    // if('The token has expired'.includes(response?.message)) return <Navigate to="/signin" state={{ from: location }} replace />
     let user = localStorage.getItem("user");
     if (user != null && user != undefined) {
       user = JSON.parse(user);
@@ -45,6 +49,15 @@ const UserHome = () => {
     setResult(cards);
     localStorage.setItem("searchResult", JSON.stringify(cards));
   };
+  const navigate = useNavigate();
+
+  const validateToken = (message) => {
+    if(message === 'The token has expired', message === 'The token is not vaild') {
+        toast.error(message);
+        localStorage.clear();
+        navigate('/signin')
+    }
+  }
 
   const favorite = async (fav_id) => {
     setLoadingFav(fav_id);
@@ -55,6 +68,7 @@ const UserHome = () => {
     if (user != null && user != undefined) {
       user = JSON.parse(user);
       await UserService.favoriteAPI(user?.id, fav_id).then((res) => {
+        validateToken(res?.message)
         const searchIndex = searchResult.findIndex(
           (value) => value.id === fav_id
         );
@@ -86,6 +100,7 @@ const UserHome = () => {
     if (user != null && user != undefined) {
       user = JSON.parse(user);
       await InterestService.sentInterestAPI(user?.id, sendId).then((res) => {
+    validateToken(res?.message)
         if(!res?.message.includes("cannot remove request")){
         const searchIndex = searchResult.findIndex(
           (value) => value.id === sendId
@@ -128,6 +143,11 @@ const UserHome = () => {
     <>
       {!loading ? (
         <div className="userhome__container">
+          {call && 
+          <Modal>
+            <ParagraphText>To get contact details send request and wait for his/her response. If he/she accepted your request then you will get the contact details.</ParagraphText>
+            <Button style={'outline'} onClick={() => setCall(false)}>Got it</Button>
+          </Modal>}
           {result != null && result?.length != 0 ? (
             result?.map((details) => (
               <Card
@@ -139,6 +159,7 @@ const UserHome = () => {
                 sentInterest={sentInterest}
                 loadingFav={loadingFav}
                 loadingInterest={loadingInterest}
+                setCall={setCall}
               ></Card>
             ))
           ) : (

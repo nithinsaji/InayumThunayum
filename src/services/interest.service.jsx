@@ -1,5 +1,5 @@
 const interestURL =
-  "https://script.google.com/macros/s/AKfycby-TxjG2WcbydH-qc6kHWALV1tWoWx18c3AYeTQPva8oeQNT8L20C8Xp9b-Pg-xj4xH/exec";
+  "https://script.google.com/macros/s/AKfycbyHEzZl1p0cSyqgFlANEVdooD03-AVef-E0IXw6UZdaQLLJJAok6C_G_57RABo7QRCT/exec";
 
 const sentInterestAPI = async (userId, sentId) => {
   var accessToken = JSON.parse(localStorage.getItem("accessToken"));
@@ -214,7 +214,7 @@ const getAllInterestListAPI = async (userId) => {
         let val = result.interestList?.map((res) => {
           return { [res.id]: true };
         });
-        localStorage.setItem("interest", JSON.stringify(Object.assign({}, ...val )));
+        {val && localStorage.setItem("interest", JSON.stringify(Object.assign({}, ...val )));}
         return result.interestList;
       });
   }

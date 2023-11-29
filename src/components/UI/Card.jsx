@@ -14,8 +14,10 @@ const Card = ({
   sentInterest,
   loadingFav,
   loadingInterest,
+  setCall
 }) => {
   const [carousel, setCarousel] = useState(false);
+  
 
   return (
     <>
@@ -65,7 +67,7 @@ const Card = ({
                 </div>
               </Link>
               <div className="profile__btn">
-                <Button style={"normal"}>
+                <Button style={"normal"} onClick={() => setCall(true)}>
                   <i class="fa-solid fa-phone"></i>Call
                 </Button>
                 <Button
@@ -129,13 +131,13 @@ export const Carousel = ({ image, onClick }) => {
 
   return (
     <>
-      {image ? (
+      {image.length > 0  ? (
         <div id="carouselExampleIndicators" class="carousel slide ">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <div className="close" onClick={() => onClick(false)}>
+              {onClick && <div className="close" onClick={() => onClick(false)}>
                 <i class="fa-solid fa-xmark"></i>
-              </div>
+              </div>}
               <div class="carousel-indicators">
                 <div
                   className="carousel-btn carousel-left"
@@ -160,7 +162,16 @@ export const Carousel = ({ image, onClick }) => {
           </div>
         </div>
       ) : (
-        <img src={noImage} class="d-block w-100" alt="..." />
+        <div id="carouselExampleIndicators" class="carousel slide ">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              {onClick && <div className="close" onClick={() => onClick(false)}>
+                <i class="fa-solid fa-xmark"></i>
+              </div>}
+              <img src={noImage} class="d-block w-100" alt="..." />
+            </div>
+          </div>
+        </div>
       )}
     </>
   );

@@ -4,14 +4,11 @@ import { toast } from "sonner";
 import UserService from "../../services/user.service";
 import { Primary, Secondary } from "../UI/Button";
 import Input from "../UI/Input";
-import FullScreenLoading from "../UI/Loading";
 
 const UpdateProfile = ({ setEdit }) => {
   const [loading, setLoading] = useState(true);
   const user = JSON.parse(localStorage.getItem("user")) || {};
   const [profile, setProfile] = useState(JSON.parse(localStorage.getItem("profile")) || {});
-
-  const navigate = useNavigate();
 
   const getProfile = async () => {
     if (user !== null && user !== undefined) {
@@ -35,9 +32,19 @@ const UpdateProfile = ({ setEdit }) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   };
 
+  const navigate = useNavigate()
+
+  const validateToken = (message) => {
+    if(message === 'The token has expired', message === 'The token is not vaild') {
+        toast.error(message);
+        localStorage.clear();
+        navigate('/signin')
+    }
+  }
   const onSubmitHandler = async () => {
     setLoading(true)
     await UserService.updateProfileAPI(profile).then((res) => {
+    validateToken(res?.message)
       if(res.status === 'success'){
         toast.success(res.message)
         setEdit(false)

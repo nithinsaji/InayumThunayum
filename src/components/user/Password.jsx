@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import AuthService from '../../services/auth.service';
 import Back from '../UI/Back'
@@ -51,11 +52,21 @@ const Password = () => {
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
+const navigate = useNavigate()
+  const validateToken = (message) => {
+    if(message === 'The token has expired', message === 'The token is not vaild') {
+        toast.error(message);
+        localStorage.clear();
+        navigate('/signin')
+    }
+  }
 
   const handleSubmit = (e) =>{
     e.preventDefault();
     setLoading(true)
     AuthService.changePasswordAPI(values.oldPassword,values.password).then((res)=>{
+
+    validateToken(res?.message)
       res?.status === "success"
       ? toast.success(res.message)
       : toast.error(res.message);

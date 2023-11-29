@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import UserService from "../../services/user.service";
 import Back from "../UI/Back";
 import Button from "../UI/Button";
@@ -76,9 +77,19 @@ const UpdateImage = () => {
       setPreview({ ...preview, [e.target.name]: "" });
     }
   };
+  const navigate = useNavigate();
+
+  const validateToken = (message) => {
+    if(message === 'The token has expired', message === 'The token is not vaild') {
+        toast.error(message);
+        localStorage.clear();
+        navigate('/signin')
+    }
+  }
   const uploadImage = (e) => {
     setLoading(true)
     UserService.updateImageAPI(values).then((res) => {
+    validateToken(res?.message)
       setValues({image1: {
         data: "",
         name: Date.now(),

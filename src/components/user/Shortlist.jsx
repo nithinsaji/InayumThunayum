@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import InterestService from "../../services/interest.service";
 import UserService from "../../services/user.service";
 import FullScreenLoading from "../UI/Loading";
@@ -18,12 +19,23 @@ const Shortlist = () => {
     JSON.parse(localStorage.getItem("interest")) || {}
   );
 
+  const navigate = useNavigate();
+
+  const validateToken = (message) => {
+    if(message === 'The token has expired', message === 'The token is not vaild') {
+        toast.error(message);
+        localStorage.clear();
+        navigate('/signin')
+    }
+  }
+
   const getFavoriteList = async () => {
     setLoading(true);
     let user = localStorage.getItem("user");
     if (user != null && user != undefined) {
       user = JSON.parse(user);
       await UserService.getFavoriteListAPI(user?.id).then((res) => {
+    validateToken(res?.message)
         setResult(res);
       });
     }
@@ -39,6 +51,7 @@ const Shortlist = () => {
     if (user != null && user != undefined) {
       user = JSON.parse(user);
       await UserService.favoriteAPI(user?.id, fav_id).then((res) => {
+    validateToken(res?.message)
         const searchIndex = searchResult?.findIndex(
           (value) => value.id === fav_id
         );
@@ -73,6 +86,7 @@ const Shortlist = () => {
     if (user != null && user != undefined) {
       user = JSON.parse(user);
       await InterestService.sentInterestAPI(user?.id, sendId).then((res) => {
+    validateToken(res?.message)
         if(!res?.message.includes("cannot remove request")){
         localStorage.setItem(
           "interest",

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import AdminService from "../../services/admin.service";
 import Table from "../UI/Table";
 
@@ -8,12 +9,23 @@ var data = null;
 
 const NewRegistration = () => {
 const [loading, setloading] = useState(true);
+
+const navigate = useNavigate();
+
+  const validateToken = (message) => {
+    if(message === 'The token has expired', message === 'The token is not vaild') {
+        toast.error(message);
+        localStorage.clear();
+        navigate('/signin')
+    }
+  }
   
 
   const getNewUsersList = async (e) => {
     setloading(true)
     await AdminService.getNewUsers().then(
       (res) => {
+    validateToken(res?.message)
         data = res.data;
       }
     );

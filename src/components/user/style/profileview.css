@@ -45,18 +45,18 @@
     position: relative;
 }
 .view__title i{
-    padding: 8px;
+    padding: 8px 9px;
     font-size: 12px;
     background-color: #00f6ff;
     border-radius: 50%;
     position: absolute;
     transform: translateY(-50%);
     top: 50%;
-    left: -30px;
+    left: -35px;
 }
 .details__conatiner{
     margin-top: 30px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
 }
 @media screen and (min-width: 321px) {
     .view__container{
@@ -68,6 +68,7 @@
     }
     .view__profile-details .details__conatiner{
         width: 80%;
+        box-shadow: 0px 1px 0px 0px #0000001c;
     }
     .view__scroll-image{
         height: 70vh;
@@ -153,4 +154,24 @@ div .image_container{
 }
 td span{
     text-align: right;
+}
+.fa-circle-check{
+    color: rgb(0, 255, 0);
+}
+
+.view__title .fa-bars{
+    color: white;
+    background: linear-gradient(303deg, rgba(0,61,255,1) 0%, rgba(0,249,255,1) 100%);
+    box-shadow: 1px 1px 12px 1px rgba(0,0,0,0.15);
+}
+.view__title .fa-person-praying{
+    color: white;
+    background: linear-gradient(303deg, rgba(255,205,0,1) 0%, rgba(244,255,111,1) 100%);
+    box-shadow: 1px 1px 12px 1px rgba(0,0,0,0.15);
+}
+
+.view__title .fa-user{
+    color: white;
+    background: linear-gradient(303deg, rgba(18,137,0,1) 0%, rgba(31,255,0,1) 100%);
+    box-shadow: 1px 1px 12px 1px rgba(0,0,0,0.15);
 }

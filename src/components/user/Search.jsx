@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import UserService from "../../services/user.service";
 import { Secondary } from "../UI/Button";
@@ -19,9 +19,16 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   var profile = JSON.parse(localStorage.getItem("profile"));
+
+  const validateToken = (message) => {
+    if(message === 'The token has expired', message === 'The token is not vaild') {
+        toast.error(message);
+        localStorage.clear();
+        navigate("/signin")
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,11 +36,13 @@ const Search = () => {
     const gender = profile?.gender == "male" ? "female" : "male";
 
     await UserService.searchAPI(gender, values).then((response) => {
+      console.log(response?.message);
+    validateToken(response?.message)
       response.status === "success"
         ? toast.success(response.message)
         : toast.error(response.message);
       setLoading(false);
-      navigate("/Dashboard/");
+      response.status === "success" && navigate("/Dashboard/");
     });
   };
 

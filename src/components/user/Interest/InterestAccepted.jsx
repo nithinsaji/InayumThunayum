@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+
 import InterestService from '../../../services/interest.service';
 import FullScreenLoading from '../../UI/Loading';
 import SmallCard from '../../UI/SmallCard';
@@ -8,6 +11,16 @@ const InterestAccepted = () => {
   const [loadingAccept, setLoadingAccept] = useState(0);
   const [loadingReject, setLoadingReject] = useState(0);
     const [result, setResult] = useState(JSON.parse(localStorage.getItem("acceptInterest")) || []);
+
+    const navigate = useNavigate();
+
+  const validateToken = (message) => {
+    if(message === 'The token has expired', message === 'The token is not vaild') {
+        toast.error(message);
+        localStorage.clear();
+        navigate('/signin')
+    }
+  }
   
     const getAcceptInterest = async() => {
       setLoading(true);
@@ -15,6 +28,8 @@ const InterestAccepted = () => {
       if (user != null && user != undefined) {
         user = JSON.parse(user);
         await InterestService.getAcceptInterestAPI(user?.id).then((res) => {
+         
+    validateToken(res?.message)
           setResult(res)
         });
       }
@@ -33,6 +48,8 @@ const InterestAccepted = () => {
       if (user != null && user != undefined) {
         user = JSON.parse(user);
         await InterestService.acceptInterestAPI(acceptId).then((res) => {
+          
+    validateToken(res?.message)
           const interestedReceivedIndex = interestedReceived?.findIndex(
             (value) => value.id === acceptId
           );
@@ -72,6 +89,8 @@ const InterestAccepted = () => {
       if (user != null && user != undefined) {
         user = JSON.parse(user);
         await InterestService.rejectInterestAPI(acceptId).then((res) => {
+
+    validateToken(res?.message)
           const acceptInterestValIndex = acceptInterestVal?.findIndex(
             (value) => value.id === acceptId
           );

@@ -3,14 +3,28 @@ import './style/Home.css'
 import groom from '../../assets/groom.png'
 import bride from '../../assets/bride.png'
 import AdminService from '../../services/admin.service';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 var total = null;
 const Home = () => {
     const [loading, setloading] = useState(true);
+
+    const navigate = useNavigate();
+
+  const validateToken = (message) => {
+    if(message === 'The token has expired', message === 'The token is not vaild') {
+        toast.error(message);
+        localStorage.clear();
+        navigate('/signin')
+    }
+  }
+
     const getTotal = async() =>{
         setloading(true)
         await AdminService.getTotalAPI().then(
           (res) => {
+            validateToken(res?.message)
             total = res.data;
             console.log(total);
             setloading(false)
