@@ -7,7 +7,7 @@ import AppContainer from './AppContainer';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename='/InayumThunayum'>
+    <BrowserRouter>{/* basename='/InayumThunayum' "homepage": "https://nithinsaji.github.io/InayumThunayum",*/}
         <Routes >
           <Route  path="/*" element={<AppContainer />} />
         </Routes>
