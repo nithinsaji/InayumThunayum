@@ -1,19 +1,21 @@
 {
   "files": {
-    "main.css": "/InayumThunayum/static/css/main.2768b050.css",
-    "main.js": "/InayumThunayum/static/js/main.03469331.js",
-    "static/media/logo.png": "/InayumThunayum/static/media/logo.66059c5c955f43cc5470.png",
-    "static/media/bride.png": "/InayumThunayum/static/media/bride.b7f69db9f64c48dd2722.png",
-    "static/media/second.png": "/InayumThunayum/static/media/second.83a1d1f032faa5a039db.png",
-    "static/media/hero.png": "/InayumThunayum/static/media/hero.32f7b956e840fbab5a3b.png",
-    "static/media/groom.png": "/InayumThunayum/static/media/groom.925ba8e854270d4b7f84.png",
-    "static/media/loading-img.png": "/InayumThunayum/static/media/loading-img.16d74c945dcbe020ea05.png",
-    "index.html": "/InayumThunayum/index.html",
-    "main.2768b050.css.map": "/InayumThunayum/static/css/main.2768b050.css.map",
-    "main.03469331.js.map": "/InayumThunayum/static/js/main.03469331.js.map"
+    "main.css": "/static/css/main.02efb7ed.css",
+    "main.js": "/static/js/main.455cec08.js",
+    "static/media/logo.png": "/static/media/logo.66059c5c955f43cc5470.png",
+    "static/media/second.png": "/static/media/second.83a1d1f032faa5a039db.png",
+    "static/media/hero.png": "/static/media/hero.32f7b956e840fbab5a3b.png",
+    "static/media/bride.png": "/static/media/bride.fdd4474e8016f1db8ddb.png",
+    "static/media/groom.png": "/static/media/groom.564669b664064b024f31.png",
+    "static/media/bg-img.png": "/static/media/bg-img.e5cc97df9d00328e77d3.png",
+    "static/media/loading-img.png": "/static/media/loading-img.16d74c945dcbe020ea05.png",
+    "static/media/background-lg.png": "/static/media/background-lg.d6378dfdefa802e826f1.png",
+    "index.html": "/index.html",
+    "main.02efb7ed.css.map": "/static/css/main.02efb7ed.css.map",
+    "main.455cec08.js.map": "/static/js/main.455cec08.js.map"
   },
   "entrypoints": [
-    "static/css/main.2768b050.css",
-    "static/js/main.03469331.js"
+    "static/css/main.02efb7ed.css",
+    "static/js/main.455cec08.js"
   ]
 }
